@@ -45,7 +45,7 @@ This method assumes that the `.txt` file contains one line per tf-quarnet. The q
 1. `SQ: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a split $ab|cd$.
 2. `4C: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a four-cycle $a,b,c,d$ and the leaf $a$ below the reticulation.
         
-For a complete overview of different methods and extra parameter options, please check the method descriptions in the source code of `physquirrel`.
+For a complete overview of different methods and extra parameter options, please check the method descriptions in the [source code](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel/src/physquirrel) of `physquirrel`.
 
 
 ## Citation
