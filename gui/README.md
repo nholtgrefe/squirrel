@@ -8,6 +8,8 @@ The GUI is available for Windows and Linux. To install and run, simply download 
 ## Features
 
 ### File Window
+![gui1](https://github.com/user-attachments/assets/6daa958e-a460-4260-a786-4a01302a30c1)
+
 - `Select file`: Allows the user to select a file out of one of the two following options:
 	1.  `.fasta` or `.nexus` file containing a multiple sequence alignment;
 	2.  `.txt` file containing a dense set of tf-quarnets, where each line contains one tf-quarnet in the folowing format:
