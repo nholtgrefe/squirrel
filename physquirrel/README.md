@@ -12,7 +12,9 @@
 ## Installation
 If you have an up-to-date version of [Python](https://www.python.org/downloads/) installed on your device, the standard package manager `pip` should come pre-installed. Then, you can install `physquirrel` from [PyPI](https://pypi.org/project/physquirrel/) by simply using the following command in a terminal:
 
-`python -m pip install physquirrel`
+```
+python -m pip install physquirrel
+```
 
   
 ## Example usage
