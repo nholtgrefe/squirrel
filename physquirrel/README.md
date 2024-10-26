@@ -26,7 +26,7 @@ Then, use the $\delta$-heuristic to create a dense set of tf-quarnets from a mul
 msa = psq.MSA('path/to/msa/file.fasta')
 Q = msa.delta_heuristic()
 ```
-To create a network from the dense set of tf-quarnets, run the Squirrel algorithm:
+To create a network from the dense set of tf-quarnets, run the Squirrel algorithm note that an outgroup can optionally be provided with the variable `outgroup`):
 ```
 N = Q.squirrel()
 ```
