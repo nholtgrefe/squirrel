@@ -16,25 +16,19 @@ If you have an up-to-date version of [Python](https://www.python.org/downloads/)
 
   
 ## Example usage
+
+### Importing the package
 To get started with `physquirrel`, open a Python shell and import the package with:
 
 ```
 import physquirrel as psq
 ```
-Then, use the $\delta$-heuristic to create a dense set of tf-quarnets from a multiple sequence alignment as follows:
+
+### Creating a set of quarnets
+Use the $\delta$-heuristic to create a dense set of tf-quarnets from a multiple sequence alignment as follows:
 ```
 msa = psq.MSA('path/to/msa/file.fasta')
 Q = msa.delta_heuristic()
-```
-To create a network from the dense set of tf-quarnets, run the Squirrel algorithm. Note that an outgroup can optionally be provided with the variable `outgroup`:
-```
-N = Q.squirrel()
-```
-To view the network and print its `eNewick` string (with an arbitrary rooting), run:
-```
-N.visualize()
-eNewick = N.create_enewick()
-print(eNewick)
 ```
 
 Alternatively, the dense set of tf-quarnets can also be loaded directly from a `.txt` file as follows:
@@ -44,6 +38,19 @@ Q = psq.DenseQuarnetSet('path/to/quarnet/file.txt')
 This method assumes that the `.txt` file contains one line per tf-quarnet. The quarnets need to be one of the following two types:
 1. `SQ: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a split $ab|cd$.
 2. `4C: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a four-cycle $a,b,c,d$ and the leaf $a$ below the reticulation.
+
+
+### Reconstructing a network
+To create a network from the dense set of tf-quarnets, run the Squirrel algorithm:
+```
+N = Q.squirrel()
+```
+To view the network and print its `eNewick` string (with an arbitrary rooting), run:
+```
+N.visualize()
+eNewick = N.create_enewick()
+print(eNewick)
+```
         
 For a complete overview of different methods and extra parameter options, please check the method descriptions in the [source code](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel/src/physquirrel) of `physquirrel`.
 
