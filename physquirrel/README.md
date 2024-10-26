@@ -10,7 +10,7 @@
 - Methods to extract information from a network (e.g. its set of splits, its displayed quarnets)
 
 ## Installation
-If you have an up-to-date version of [Python](https://www.python.org/downloads/) installed on your device, the standard package manager `pip` should come pre-installed. Then, you can install `physquirrel` from [PyPI](https://pypi.org/) by simply using the following command in a terminal:
+If you have an up-to-date version of [Python](https://www.python.org/downloads/) installed on your device, the standard package manager `pip` should come pre-installed. Then, you can install `physquirrel` from [PyPI](https://pypi.org/project/physquirrel/) by simply using the following command in a terminal:
 
 `python -m pip install physquirrel`
 
