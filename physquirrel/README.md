@@ -41,11 +41,11 @@ This method assumes that the `.txt` file contains one line per tf-quarnet. The q
 
 
 ### Reconstructing a network
-To create a network from the dense set of tf-quarnets, run the Squirrel algorithm:
+To create a semi-directed network from the dense set of tf-quarnets, run the Squirrel algorithm:
 ```
 N = Q.squirrel()
 ```
-To view the network and print its `eNewick` string (with an arbitrary rooting), run:
+To view the semi-directed network and print its `eNewick` string (with an arbitrary rooting), run:
 ```
 N.visualize()
 eNewick = N.create_enewick()
