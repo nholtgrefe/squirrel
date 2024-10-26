@@ -32,3 +32,8 @@ The GUI is available for Windows and Linux. To install and run, simply download 
 - `eNewick save options`: Allows the user to either save the selected network or all networks into a `.txt` file using the `eNewick` format. In case no outgroup was specified, the semi-directed networks are rooted randomly to obtain an `eNewick` string.
 - `Network visualizer`: Basic visualization window to depict the selected network and its corresponding `eNewick` string. The visualization is not optimized for larger networks, in which case we recommend an external program (such as [Dendroscope 3](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/algorithms-in-bioinformatics/software/dendroscope/)) to view the networks in more detail.
 ![gui3](https://github.com/user-attachments/assets/ee492e3d-e3df-48e9-8fd6-0b5bd1236d9e)
+
+## Citation
+If you use the **Squirrel* GUI, please cite the corresponding paper:
+
+*Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments* by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
