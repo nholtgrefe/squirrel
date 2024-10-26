@@ -634,7 +634,7 @@ class DenseQuarnetSet(QuarnetSet):
         if verbose == True:
             print(f"\rBest network from iteration {best_network_index+1}: score = {scores[best_network_index]}", end='')
         
-        if outgroup:
+        if outgroup is not None:
             networks = [network.to_directed_network(outgroup) for network in networks]
             
         if all_networks == False:
