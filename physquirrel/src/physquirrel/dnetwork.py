@@ -1,9 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-import phylox
-from phylox.newick_parser import dinetwork_to_extended_newick, extended_newick_to_dinetwork
 
-from .utils import id_generator, validate
+from .utils import validate
 
 ############################################################
 
@@ -107,12 +105,15 @@ class DirectedNetwork(nx.DiGraph):
         """Checks if the network is a tree."""
         return len(self.reticulation_nodes()) == 0
 
-    def visualize(self, layout='dot', title=None, leaflabels=True, internal_labels=False, font_size=12):
-        """Visualization function with several layout-options: ['dot', 'kamada', 'neato', 'twopi', 'circo'].
-        If pygraphviz is not installed, use 'kamada'. Optional title can be given to the plot.
+    def visualize(self, layout='custom', title=None, leaflabels=True, internal_labels=False, font_size=12):
+        """Visualization function with several layout-options: ['custom', 'dot', 'kamada', 'neato', 'twopi', 'circo'].
+        If graphviz is not installed, use 'kamada' or 'custom'. Optional title can be given to the plot.
         Label printing can be turned off."""
         if layout == 'kamada':
             pos = nx.kamada_kawai_layout(self)
+        elif layout == 'custom':
+            pos = _hierarchy_pos(self)#, vert_gap=0.5, width=5)
+            pos = {node: (-y, x) for node, (x, y) in pos.items()}
         else:
             pos = nx.drawing.nx_agraph.graphviz_layout(self, prog=layout)
         
@@ -141,7 +142,12 @@ class DirectedNetwork(nx.DiGraph):
         return ax
 
     def load_from_enewick(self, enewick_string):
-        """Clears the network and loads the network from the given enewick_string."""
+        """Clears the network and loads the network from the given enewick_string.
+        Requires 'phylox'. Run 'pip install phylox' first."""
+        
+        import phylox
+        from phylox.newick_parser import dinetwork_to_extended_newick, extended_newick_to_dinetwork
+
         self.clear()
         net = extended_newick_to_dinetwork(enewick_string)
         mapping = {leaf: net.nodes[leaf].get("label") for leaf in net.leaves}
@@ -241,3 +247,62 @@ class DirectedNetwork(nx.DiGraph):
         pass
 
 ############################################################
+
+
+def _longest_distance_to_root(G, root):
+    # Initialize distances with -inf
+    distances = {node: 0 for node in G.nodes}
+    distances[root] = 0  # Distance to itself is 0
+
+    # Iterate over all nodes to compute the longest path to the root
+    for node in G.nodes:
+        if node == root:
+            continue  # Skip the root node, its distance is already set
+        
+        # Get all simple paths from the node to the root
+        paths = list(nx.all_simple_paths(G, source=root, target=node))
+        
+        # Find the longest path
+        longest_path_length = max((len(path) - 1 for path in paths))#, default=0)
+        
+        # Update the distance for this node
+        distances[node] = longest_path_length
+
+    return distances
+
+def _hierarchy_pos(G, root=None, width=5., vert_gap=0.5, xcenter=0.5):
+    if root is None:
+        root = next(iter(nx.topological_sort(G)))  # Start at a topologically sorted root if none is provided
+
+    # Compute longest distances to the root
+    distances = _longest_distance_to_root(G, root)
+
+    # Create a dictionary to store the level for each node based on distance
+    level_mapping = {node: distances[node] for node in G.nodes}
+
+    # Calculate the maximum distance for inversion
+    max_distance = max(level_mapping.values())
+
+    def _hierarchy_pos(G, node, width=2., xcenter=0.5, pos=None, parent=None):
+        if pos is None:
+            pos = {node: (xcenter, max_distance - level_mapping[node])}  # Invert y-coordinate
+        else:
+            pos[node] = (xcenter, max_distance - level_mapping[node])  # Invert y-coordinate
+            
+        neighbors = list(G.successors(node))  # Use successors for directed graph
+
+        # Check if the parent exists in neighbors before attempting to remove
+        if parent is not None and parent in neighbors:
+            neighbors.remove(parent)
+
+        if len(neighbors) != 0:
+            dx = width / len(neighbors)  # Calculate space between children
+            nextx = xcenter - width / 2 - dx / 2  # Start placing children
+
+            for neighbor in neighbors:
+                nextx += dx  # Move to the right for the next child
+                pos = _hierarchy_pos(G, neighbor, width=dx, xcenter=nextx, pos=pos, parent=node)
+
+        return pos
+
+    return _hierarchy_pos(G, root, width=width, xcenter=xcenter)
