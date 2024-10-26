@@ -5,7 +5,7 @@
 ## List of important features
 - **$\delta$-heuristic** to construct quarnets (4-leaf subnetworks) from a multiple sequence alignment (in `.fasta` or `.nexus` format)
 - **Squirrel** algorithm to construct semi-directed phylogenetic level-1 networks from quarnets
-- Visualization of networks
+- Basic visualization of networks
 - Exporting phylogenetic trees and networks in `eNewick` format
 - Methods to extract information from a network (e.g. its set of splits, its displayed quarnets)
 
