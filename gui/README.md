@@ -34,6 +34,6 @@ The GUI is available for Windows and Linux. To install and run, simply download 
 ![gui3](https://github.com/user-attachments/assets/ee492e3d-e3df-48e9-8fd6-0b5bd1236d9e)
 
 ## Citation
-If you use the **Squirrel* GUI, please cite the corresponding paper:
+If you use the **Squirrel** GUI, please cite the corresponding paper:
 
 *Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments* by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
