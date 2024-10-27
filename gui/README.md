@@ -5,8 +5,7 @@ The **Squirrel-GUI** is a Graphical User-Interface for phylogenetic network anal
 ## Installation
 The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open/execute it once downloaded. (If preffered, experienced users can also run the GUI from the [source files](https://github.com/nholtgrefe/squirrel/tree/main/gui/src) or use our Python package [`physquirrel`](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel).)
 
-![gui00](https://github.com/user-attachments/assets/676c980a-cc2e-4f7e-adc3-bf41b155ef8d)
-<img src="https://github.com/user-attachments/assets/676c980a-cc2e-4f7e-adc3-bf41b155ef8d" alt="Sample Image" width="700" >
+<img src="https://github.com/user-attachments/assets/676c980a-cc2e-4f7e-adc3-bf41b155ef8d" alt="Sample Image" width="500" >
 
 ## Features
 
@@ -28,14 +27,14 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 	- change the maximum number of leaves for which the Travelling Salesman Problem is solved optimally
 	- choose whether the quarnet-weights should be used.
 - `Algorithm status`: Window to show the progress while the algorithm is running.
-![gui02](https://github.com/user-attachments/assets/f3f4480e-167c-4df4-9abe-f7147e8d76a7)
+
 <img src="https://github.com/user-attachments/assets/f3f4480e-167c-4df4-9abe-f7147e8d76a7" alt="Sample Image" width="700" >
 
 ### Network Window
 - `Reconstructed networks`: Table with the reconstructed networks and corresponding (weighted) consistency scores. The table will continuously be updated while the algorithm is running. The table also allows the user to sort the networks according to their scores.
 - `eNewick save options`: Allows the user to either save the selected network or all networks into a `.txt` file using the `eNewick` format. In case no outgroup was specified, the semi-directed networks are rooted randomly to obtain an `eNewick` string.
 - `Network visualizer`: Basic visualization window to depict the selected network and its corresponding `eNewick` string. The visualization is not optimized for larger networks, in which case we recommend an external program (such as [Dendroscope 3](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/algorithms-in-bioinformatics/software/dendroscope/)) to view the networks in more detail.
-![gui03](https://github.com/user-attachments/assets/df1775ad-b442-448f-be77-5665ee5634ca)
+
 <img src="https://github.com/user-attachments/assets/df1775ad-b442-448f-be77-5665ee5634ca" alt="Sample Image" width="700" >
 
 ## Citation
