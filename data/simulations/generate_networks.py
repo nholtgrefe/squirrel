@@ -2,7 +2,7 @@ from physquirrel import random_semi_directed_network
 import random, math
 
 # Target folder for networks
-data_folder = "/path/to/target/folder/to/save/networks/"
+data_folder = "/path/to/target/folder/to/save/generated_networks/"
 
 # Parameters
 leaf_number_list = [10,15,20,25,30,35]
