@@ -16,6 +16,7 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 - `File information`: Displays information on the chosen file, such as a list of taxa and the length of the sequence alignment.
 ![gui01](https://github.com/user-attachments/assets/2ab886b6-00c6-482d-9fb4-7d5ccd02b6f1)
 
+<img src="[https://your-image-url.type](https://github.com/user-attachments/assets/2ab886b6-00c6-482d-9fb4-7d5ccd02b6f1)" width="600">
 
 ### Algorithm Window
 - `Reconstruct networks`: Runs the **Squirrel** algorithm (and possibly the **$\delta$-heuristic**) to reconstruct a phylogenetic level-1 network from the set of tf-quarnets or the sequence alignment.
