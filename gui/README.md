@@ -3,7 +3,7 @@
 This page describes the Graphical User-Interface (GUI) that comes with the **Squirrel** algorithm.
 
 ## Installation
-The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open it once downloaded. For experienced users, the GUI can also be run from the source files.
+The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open it once downloaded. If preffered, experienced users can also run the GUI from the source files.
 
 ## Features
 
