@@ -2,7 +2,7 @@ This folder contains the biological datasets, the simulated networks and results
 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton. Below we outline the files in the different subfolders
 
 ## HIV
-The HIV-1 sequence alignment is in the `hiv.fasta`, originally from [1]. The Python script to construct the network in the paper is in `hiv.py`, with the resulting network (in `eNewick` format) in the file `hiv.txt`.
+The HIV-1 sequence alignment is in the `hiv.fasta` file, originally from [1]. The Python script to construct the network in the paper is in `hiv.py`, with the resulting network (in `eNewick` format) in the file `hiv.txt`.
 
 ## Primates
 The sequence alignment for the Primate dataset was to large for GitHub, but can be found as [supplementary material] of the paper:
