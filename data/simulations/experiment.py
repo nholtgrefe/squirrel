@@ -10,7 +10,7 @@ files = os.listdir(data_folder)
 files.sort()
 
 # File to save numerical results
-result_file = "/path/to/file/with/result/result_experiment.txt"
+result_file = "/path/to/file/with/result/experiment.txt"
 
 # Create a header line
 with open(result_file, 'a') as f:
