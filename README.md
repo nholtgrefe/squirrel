@@ -8,7 +8,7 @@ The **Squirrel** algorithm can either be run with a graphical user-interface (GU
 
 To test out the GUI or the Python package, we recommend using the small sequence alignment in the `hiv.fasta` [file](https://github.com/nholtgrefe/squirrel/blob/main/data/hiv/hiv.fasta).
 
-## Supplementary files
+## Supplementary data and scripts
 The biological datasets that appeared in the paper are in the folder [data](https://github.com/nholtgrefe/squirrel/tree/main/data), together with the networks and results of the simulation experiments. The corresponding Python scripts are in the folder [scripts](https://github.com/nholtgrefe/squirrel/tree/main/scripts). For a more detailed explanation of these files, see the respective `README.md` files in the folders.
 
 ## Citation
