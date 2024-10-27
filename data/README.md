@@ -5,9 +5,11 @@ This folder contains the biological datasets, the simulated networks and results
 The HIV-1 sequence alignment is in the `hiv.fasta` file, originally from [1]. The Python script to construct the network in the Squirrel paper is in `hiv.py`, with the resulting network (in `eNewick` format) in the file `hiv.txt`.
 
 ## Primates
-### Full primate set
+### All primates
 The primate sequence alignment was too large for GitHub but can be retrieved as the file `1730_ALIGNMENT_CONCAT.paup.nex` from the [supplementary files](https://doi.org/10.5061/dryad.rfj6q577d) of the original source [2]. The Python script to construct the network in the Squirrel paper is in `primates.py`, with the resulting network (in `eNewick` format) in the file `primates.txt`.
 
+### Cercopithecinae subfamily
+The file `cerco.py` contains the script to construct the networks for the Cercopithecinae subfamily (using the same sequence alignment as the full primate data set). The two resulting networks in the Squirrel paper are (in `eNewick` format) in the file `cerco.txt`. The file `cerco_QNRSVM.csv` is from the paper [3] and contains the quarnets constructed with QNR-SVM (in their format). The file `cerco_QNRSVM.py` contains the script to generate the networks from their quarnets. 
 
 ## Xiphophorus
 The tf-quarnets for the Xiphophorus alignment are in the zip-file `xiphophorus_quarnet_data.zip`. The tf-quarnets were generated with the MML-algorithm [4] and also come from that paper (using their format). The Python script to construct the network in the Squirrel paper is in `xiphophorus.py`, with the resulting network (in `eNewick` format) in the file `xiphophorus.txt`.
