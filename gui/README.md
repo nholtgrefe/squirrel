@@ -34,7 +34,7 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 ### Network Window
 - `Reconstructed networks`: Table with the reconstructed networks and corresponding (weighted) consistency scores. The table will continuously be updated while the algorithm is running. The table also allows the user to sort the networks according to their scores.
 - `eNewick save options`: Allows the user to either save the selected network or all networks into a `.txt` file using the `eNewick` format. In case no outgroup was specified, the semi-directed networks are rooted randomly to obtain an `eNewick` string.
-- `Network visualizer`: Basic visualization window to depict the selected network and its corresponding `eNewick` string. The visualization is not optimized for larger networks, in which case we recommend an external program (such as [Dendroscope 3](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/algorithms-in-bioinformatics/software/dendroscope/)) to view the networks in more detail.
+- `Network visualizer`: Basic visualization window to depict the selected network and its corresponding `eNewick` string. The buttons below can be used for navigation, zooming and saving the network as an image. The visualization is not optimized for larger networks, in which case we recommend an external program (such as [Dendroscope 3](https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/algorithms-in-bioinformatics/software/dendroscope/)) to view the networks in more detail.
 
 <img src="https://github.com/user-attachments/assets/df1775ad-b442-448f-be77-5665ee5634ca" alt="Sample Image" width="800" >
 
