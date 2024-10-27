@@ -640,7 +640,7 @@ class SemiDirectedNetwork(MixedGraph):
     
     def visualize(self, layout='kamada', title=None, leaflabels=True, internal_labels=False, font_size=12):
         """Visualization function with several layout-options: ['kamada', 'neato', 'twopi', 'circo'].
-        If pygraphviz is not installed, use 'kamada'. Optional title can be given to the plot.
+        If graphviz/pygraphviz is not installed, use 'kamada'. Optional title can be given to the plot.
         Label printing can be turned off."""
         if layout == 'kamada':
             pos = nx.kamada_kawai_layout(self)
