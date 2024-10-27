@@ -14,7 +14,7 @@ result_file = "/path/to/file/with/result/result_experiment.txt"
 
 # Create a header line
 with open(result_file, 'a') as f:
-    f.write("file \t epsilon \t QC \t QS \t ret \t time \n")
+    f.write("file \t epsilon \t QC \t 1-QS \t ret \t time \n")
 
 # Iterate through networks
 for file in files:
