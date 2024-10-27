@@ -9,7 +9,7 @@ The sequence alignment for the Primate dataset was to large for GitHub, but can 
 the primate file is too large and available at https://doi.org/10.5061/dryad.rfj6q577d
 
 ## Xiphophorus
-The tf-quarnets for the Xiphophorus alignment are in the zip-file `xiphophorus_quarnet_data.zip`. The tf-quarnets were generated with the MML-algorithm  and also come from that paper [4] (using their format). The Python script to construct the network in the Squirrel paper is in `xiphophorus.py`, with the resulting network (in `eNewick` format) in the file `xiphophorus.txt`.
+The tf-quarnets for the Xiphophorus alignment are in the zip-file `xiphophorus_quarnet_data.zip`. The tf-quarnets were generated with the MML-algorithm [4] and also come from that paper (using their format). The Python script to construct the network in the Squirrel paper is in `xiphophorus.py`, with the resulting network (in `eNewick` format) in the file `xiphophorus.txt`.
 
 ## Simulations
 The networks generated for the simulation experiments in the paper are in the file `dsfdsf`. The filenames have the format `oiij;oji`. The numerical results of the experiments are in the file `ddfgd`
