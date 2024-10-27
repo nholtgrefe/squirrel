@@ -14,7 +14,7 @@ result_file = "/path/to/file/with/result/result_experiment.txt"
 
 # Create a header line
 with open(result_file, 'a') as f:
-    f.write("file \t epsilon \t QC \t QS \t QCprime \t ret \t time \n")
+    f.write("file \t epsilon \t QC \t QS \t ret \t time \n")
 
 # Iterate through networks
 for file in files:
@@ -38,14 +38,13 @@ for file in files:
         
         score1 = Q.consistency(Q_recon, triangles=False) # QC
         score2 = Q.distance(Q_recon, triangles=False) #QS
-        score3 = Q.consistency_prime(Q_recon, reference=Qpert, triangles=False) #QCprime
         
         ret = len(N_reconstructed.reticulation_nodes())
 
         timing = time2 - time1
 
         # Write results to file
-        info = [epsilon, score1, score2, score3, ret, timing]
+        info = [epsilon, score1, score2, ret, timing]
         with open(result_file, 'a') as f:
             f.write(file + "\t")
             f.write("\t".join(map(str, info)) + "\n")
