@@ -1,2 +1,0 @@
-(Colobus_angolensis_palliatus,((((Macaca_fascicularis,Macaca_mulatta),Macaca_nemestrina),((Cercocebus_atys,Mandrillus_leucophaeus),(Theropithecus_gelada,Papio_anubis))),Chlorocebus_sabaeus));
-(Colobus_angolensis_palliatus,(((Macaca_nemestrina,(Macaca_fascicularis,Macaca_mulatta)),(((Theropithecus_gelada,Papio_anubis),(Mandrillus_leucophaeus)#H1),(#H1,Cercocebus_atys))),Chlorocebus_sabaeus));
