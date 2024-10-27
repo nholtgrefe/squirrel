@@ -50,3 +50,5 @@ for file in files:
             f.write(file + "\t")
             f.write("\t".join(map(str, info)) + "\n")
         print(file, epsilon)
+
+# This code will produce a tab-delimited .txt file, which we later converted into a .csv file for better viewing on GitHub
