@@ -25,7 +25,7 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 - `Algorithm settings`: Allows the user to:
 	- specify an outgroup (which results in rooted networks)
 	- change the $\lambda$-value for the $\delta$-heuristic,
-	- change the maximum number of leaves for which the Travelling Salesman Problem is solved optimally
+	- change the maximum number of leaves for which the Travelling Salesman Problem is solved optimally,
 	- choose whether the quarnet-weights should be used.
 - `Algorithm status`: Window to show the progress while the algorithm is running.
 
