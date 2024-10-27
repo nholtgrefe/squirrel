@@ -107,7 +107,7 @@ class DirectedNetwork(nx.DiGraph):
 
     def visualize(self, layout='custom', title=None, leaflabels=True, internal_labels=False, font_size=12):
         """Visualization function with several layout-options: ['custom', 'dot', 'kamada', 'neato', 'twopi', 'circo'].
-        If graphviz is not installed, use 'kamada' or 'custom'. Optional title can be given to the plot.
+        If graphviz/pygraphviz is not installed, use 'kamada' or 'custom'. Optional title can be given to the plot.
         Label printing can be turned off."""
         if layout == 'kamada':
             pos = nx.kamada_kawai_layout(self)
