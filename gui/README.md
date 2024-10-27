@@ -14,8 +14,9 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 		- `SQ: a b c d 1.0` for a quarnet on leaves $\{a,b,c,d\}$ with a split $ab|cd$ and weight 1.0;
 		- `4C: a b c d 1.0` for a quarnet on leaves $\{a,b,c,d\}$ with a four-cycle $a,b,c,d$, the leaf $a$ below the reticulation and weight 1.0.
 - `File information`: Displays information on the chosen file, such as a list of taxa and the length of the sequence alignment.
-![gui01](https://github.com/user-attachments/assets/2ab886b6-00c6-482d-9fb4-7d5ccd02b6f1)
+
 <img src="https://github.com/user-attachments/assets/2ab886b6-00c6-482d-9fb4-7d5ccd02b6f1" alt="Sample Image" width="700" >
+
 ### Algorithm Window
 - `Reconstruct networks`: Runs the **Squirrel** algorithm (and possibly the **$\delta$-heuristic**) to reconstruct a phylogenetic level-1 network from the set of tf-quarnets or the sequence alignment.
 - `Algorithm settings`: Allows the user to:
