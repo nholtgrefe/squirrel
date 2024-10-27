@@ -9,7 +9,7 @@ The **Squirrel** algorithm can either be run with a graphical user-interface (GU
 To test out the GUI or the Python package, we recommend using the small sequence alignment in the `hiv.fasta` [file](https://github.com/nholtgrefe/squirrel/blob/main/data/hiv/hiv.fasta).
 
 ## Supplementary data and scripts
-The biological datasets that appeared in the paper are in the folder [data](https://github.com/nholtgrefe/squirrel/tree/main/data), together with the networks and results of the simulation experiments. The corresponding Python scripts are in the folder [scripts](https://github.com/nholtgrefe/squirrel/tree/main/scripts). For a more detailed explanation of these files, see the respective `README.md` files in the folders.
+The biological data sets, simulation results and used Python scripts from the paper are all in the folder [data](https://github.com/nholtgrefe/squirrel/tree/main/data). For a more detailed explanation of these files (including sources for the biological data), see the respective `README.md` file in the folder.
 
 ## Citation
 If you use any of the code in this repository, please cite the corresponding paper: 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
