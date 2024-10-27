@@ -1,9 +1,9 @@
 # Graphical User-Interface (GUI) for Squirrel
 
-This page describes the Graphical User-Interface (GUI) that comes with the **Squirrel** algorithm. To install, simply download the 
+This page describes the Graphical User-Interface (GUI) that comes with the **Squirrel** algorithm.
 
 ## Installation
-The GUI is available for Windows and Linux. To install and run, simply download the correct `.exe` file and open it once downloaded.
+The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open it once downloaded.
 
 ## Features
 
