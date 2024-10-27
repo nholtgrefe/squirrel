@@ -20,6 +20,6 @@ The networks for the simulation experiments in the Squirrel paper were generated
 ## References
 
 1. M. Salemi and A.-M. Vandamme. The phylogenetic handbook: a practical approach to DNA and protein phylogeny. Cambridge University Press, 2003.
-2. D. Vanderpool et al. “Primate phylogenomics uncovers multiple rapid radiations and ancient interspecific introgression”. In: PLOS Biology 18.12 (Dec. 2020), pp. 1–27. DOI: 10.1371/journal.pbio.3000954.
-3. T. Barton, E. Gross, C. Long, and J. Rusinko. Statistical learning with phylogenetic network invariants. 2022. arXiv:2211.11919.
-4. S. Martin, V. Moulton, and R. M. Leggett. Algebraic invariants for inferring 4-leaf semi-directed phylogenetic networks. 2023. bioRxiv: 10.1101/2023.09.11.557152.
+2. D. Vanderpool et al. “Primate phylogenomics uncovers multiple rapid radiations and ancient interspecific introgression”. In: PLOS Biology 18.12 (Dec. 2020), pp. 1–27. DOI: [10.1371/journal.pbio.3000954](https://doi.org/10.1371/journal.pbio.3000954).
+3. T. Barton, E. Gross, C. Long, and J. Rusinko. Statistical learning with phylogenetic network invariants. 2022. arXiv:[2211.11919](https://arxiv.org/abs/2211.11919).
+4. S. Martin, V. Moulton, and R. M. Leggett. Algebraic invariants for inferring 4-leaf semi-directed phylogenetic networks. 2023. bioRxiv:[10.1101/2023.09.11.557152](https://www.biorxiv.org/content/10.1101/2023.09.11.557152v3).
