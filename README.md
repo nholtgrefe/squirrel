@@ -1,7 +1,7 @@
 # Squirrel
 This is the repository corresponding to the paper: 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
 
-## Running the Squirrel algorithm
+## Using the Squirrel algorithm
 The **Squirrel** algorithm is easy to install and can either be run with a graphical user-interface (GUI) for inexperienced programmers, or as part of our Python package `physquirrel` which allows for more functionality (and is therefore recommended if the user is experienced with Python). For an installation guide and a more detailed overview of the features (including screenshots for the GUI), please visit the `README.md` files in the respective folders:
 - [gui](https://github.com/nholtgrefe/squirrel/tree/main/gui), for the graphical user-interface;
 - [physquirrel](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel), for the corresponding Python package.
