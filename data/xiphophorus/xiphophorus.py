@@ -46,7 +46,7 @@ for q in Q:
 # Make it a dense quarnet set
 DQ = DenseQuarnetSet(newQ)
 
-# Construct the network
+# Construct the networks
 outgroup = 'Psjonesii'
 networks, scores = DQ.squirrel(include_score=True, all_networks=True, outgroup=outgroup)
 networks[0].visualize(layout="dot",title="Constructed Xiphophorus network")
