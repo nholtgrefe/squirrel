@@ -4,7 +4,7 @@ This is the repository corresponding to the paper: 'Squirrel: Reconstructing sem
 ## Running the Squirrel algorithm
 The **Squirrel** algorithm can either be run with a graphical user-interface (GUI) for inexperienced programmers, or as part of our Python package `physquirrel` which allows for more functionality (and is therefore recommended if the user is experienced with Python). For an installation guide and a more detailed overview of the features, please visit the `README.md` files in the respective folders:
 - [gui](https://github.com/nholtgrefe/squirrel/tree/main/gui), for the graphical user-interface;
-- [physquirrel], for the corresponding Python package.
+- [physquirrel](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel), for the corresponding Python package.
 
 To test out the GUI or the Python package, we recommend using the small sequence alignment in the `hiv.fasta` [file].
 
