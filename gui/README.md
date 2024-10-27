@@ -3,7 +3,7 @@
 The **Squirrel-GUI** is a Graphical User-Interface for phylogenetic network analysis, employing the Squirrel algorithm to reconstruct semi-directed phylogenetic level-1 networks from quarnets or sequence alignments.
 
 ## Installation
-The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open/execute it once downloaded. If preffered, experienced users can also run the GUI from the [source files](https://github.com/nholtgrefe/squirrel/tree/main/gui/src) or use our Python package [`physquirrel`](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel).
+The GUI is available for Windows and Linux [here](https://drive.google.com/drive/folders/16ZQ2qM0v4-DgKY3A1av1ms9NeEKSDe1C?usp=sharing). To install and run, simply download the `.exe` file for your operating system and open/execute it once downloaded. (If preffered, experienced users can also run the GUI from the [source files](https://github.com/nholtgrefe/squirrel/tree/main/gui/src) or use our Python package [`physquirrel`](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel).)
 
 ## Features
 
