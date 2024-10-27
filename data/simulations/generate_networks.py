@@ -18,6 +18,7 @@ for leaf_nr in leaf_number_list:
         
         while True:
             try:
+                # Use the random network generator we implemented in physquirrel
                 N = random_semi_directed_network(leaf_nr, ret_nr)
                 break
             except:
