@@ -48,7 +48,7 @@ To create a phylogenetic network from the dense set of tf-quarnets, run the Squi
 ```
 N = Q.squirrel()
 ```
-To view the semi-directed network and show its `eNewick` string (with an arbitrary rooting), run:
+To view the resulting network and show its `eNewick` string (with an arbitrary rooting if no outgroup was specified), run:
 ```
 N.visualize()
 N.create_enewick()
