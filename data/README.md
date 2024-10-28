@@ -16,7 +16,7 @@ The file `cerco.py` contains the script to construct the networks for the Cercop
 The tf-quarnets for the Xiphophorus alignment are in the zip-file `xiphophorus_quarnet_data.zip`. The tf-quarnets were generated with the MML-algorithm [4] and also come from that paper (using their format). The Python script to construct the network in the Squirrel paper is in `xiphophorus.py`, with the resulting network (in `eNewick` format) in the file `xiphophorus.txt`.
 
 ## Simulations
-The networks for the simulation experiments in the Squirrel paper were generated with the script `generated_netweorks.py`. The generated networks are in the zip-file `generated_networks.zip` (using the `physquirrel` format for semi-directed networks). The filenames for the networks have the format `SDNXXXXX_LYYYYY_RZZZZZ.txt`, where `XXXXX` is the id-number, `YYYYY` the number of leaves, and `ZZZZZ` the number of reticulations. The numerical results of the experiments are in the file `experiment.csv` and are computed with the script `experiment.py`.
+The networks for the simulation experiments in the Squirrel paper were generated with the script `generated_networks.py`. The generated networks are in the zip-file `generated_networks.zip` (using the `physquirrel` format for semi-directed networks). The filenames for the networks have the format `SDNXXXXX_LYYYYY_RZZZZZ.txt`, where `XXXXX` is the id-number, `YYYYY` the number of leaves, and `ZZZZZ` the number of reticulations. The numerical results of the experiments are in the file `experiment.csv` and are computed with the script `experiment.py`.
 
 ## References
 
