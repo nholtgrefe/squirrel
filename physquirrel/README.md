@@ -45,7 +45,7 @@ This method assumes that the `.txt` file contains one line per tf-quarnet. The q
 To give the quarnets a weight, simply add the weight to the end of the string (e.g. `SQ: a b c d 0.5`).
 
 ### Reconstructing a network
-To create a phylogenetic network from the dense set of tf-quarnets, run the Squirrel algorithm. (If an outgroup is known, this can be specified by passing `outgroup='name_of_outgroup'` to the method.)
+To create a phylogenetic network from the dense set of tf-quarnets, run the Squirrel algorithm. (If some outgroup `taxon_name` is known, this can be specified by passing `outgroup='taxon_name'` to the method.)
 ```
 N = Q.squirrel()
 ```
