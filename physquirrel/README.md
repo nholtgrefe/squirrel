@@ -40,10 +40,11 @@ Q = psq.DenseQuarnetSet('path/to/quarnet/file.txt')
 This method assumes that the `.txt` file contains one line per tf-quarnet. The quarnets need to be one of the following two types:
 1. `SQ: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a split $ab|cd$.
 2. `4C: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a four-cycle $a,b,c,d$ and the leaf $a$ below the reticulation.
+
 To give the quarnets a weight, simply add the weight to the end of the string (e.g. `SQ: a b c d 0.5`).
 
 ### Reconstructing a network
-To create a semi-directed network from the dense set of tf-quarnets, run the Squirrel algorithm:
+To create a phylogenetic network from the dense set of tf-quarnets, run the Squirrel algorithm. If an outgroup is known, this can be specified by passing `outgroup='name_of_outgroup'` to the method.
 ```
 N = Q.squirrel()
 ```
