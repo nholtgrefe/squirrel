@@ -40,18 +40,17 @@ Q = psq.DenseQuarnetSet('path/to/quarnet/file.txt')
 This method assumes that the `.txt` file contains one line per tf-quarnet. The quarnets need to be one of the following two types:
 1. `SQ: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a split $ab|cd$.
 2. `4C: a b c d` for a quarnet on leaves $\{a,b,c,d\}$ with a four-cycle $a,b,c,d$ and the leaf $a$ below the reticulation.
-
+To give the quarnets a weight, simply add the weight to the end of the string (e.g. `SQ: a b c d 0.5`).
 
 ### Reconstructing a network
 To create a semi-directed network from the dense set of tf-quarnets, run the Squirrel algorithm:
 ```
 N = Q.squirrel()
 ```
-To view the semi-directed network and print its `eNewick` string (with an arbitrary rooting), run:
+To view the semi-directed network and show its `eNewick` string (with an arbitrary rooting), run:
 ```
 N.visualize()
-eNewick = N.create_enewick()
-print(eNewick)
+N.create_enewick()
 ```
         
 For a complete overview of different methods and extra parameter options, please check the method descriptions in the [source code](https://github.com/nholtgrefe/squirrel/tree/main/physquirrel/src/physquirrel) of `physquirrel`.
