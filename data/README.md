@@ -1,3 +1,4 @@
+# Supplementary data and scripts
 This folder contains the biological datasets, the simulated networks and results of the simulation experiments from the paper:
 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton. Below we outline the files in the different subfolders
 
