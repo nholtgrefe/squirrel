@@ -27,7 +27,8 @@ import physquirrel as psq
 ```
 
 ### Creating a set of quarnets
-Use the $\delta$-heuristic to create a dense set of tf-quarnets from a multiple sequence alignment as follows:
+Use the $\delta$-heuristic to create a dense set of tf-quarnets from a multiple sequence alignment as follows. (To test out the package, we recommend using the small sequence alignment in the file [`hiv.fasta`](https://github.com/nholtgrefe/squirrel/blob/main/data/hiv/hiv.fasta).
+:
 ```
 msa = psq.MSA('path/to/msa/file.fasta')
 Q = msa.delta_heuristic()
