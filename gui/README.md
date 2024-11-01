@@ -41,4 +41,4 @@ The GUI is available for Windows and Linux [here](https://drive.google.com/drive
 ## Citation
 If you use the **Squirrel-GUI**, please cite the corresponding paper:
 
-*Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments* by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
+*Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments* by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
