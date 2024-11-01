@@ -1,5 +1,5 @@
 # Squirrel
-This is the repository corresponding to the paper: 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
+This is the repository corresponding to the paper: 'Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments' by Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.
 
 ## Using the Squirrel algorithm
 The **Squirrel** algorithm is easy to install and can either be run with a graphical user-interface (GUI) for inexperienced programmers, or as part of our Python package `physquirrel` which allows for more functionality (and is therefore recommended if the user is experienced with Python). For an installation guide and a more detailed overview of the features (including screenshots for the GUI), please click on the links below to visit the `README.md` files in the respective folders:
@@ -16,7 +16,7 @@ If you use any of the code in this repository, please cite the corresponding pap
 Or in `bibtex` format:
 ```
 @misc{holtgrefe2024squirrel,
-	 title={Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments}, 
+	 title={Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments}, 
 	 author={Holtgrefe, Niels and Huber, Katharina T, and van Iersel, Leo and Jones, Mark and Martin, Samuel and Moulton, Vincent},
 	 year={2024}
 	 }
