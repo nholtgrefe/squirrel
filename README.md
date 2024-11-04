@@ -18,6 +18,8 @@ Or in `bibtex` format:
 @misc{holtgrefe2024squirrel,
 	 title={Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments}, 
 	 author={Holtgrefe, Niels and Huber, Katharina T, and van Iersel, Leo and Jones, Mark and Martin, Samuel and Moulton, Vincent},
-	 year={2024}
+	 year={2024},
+	 eprint={10.1101/2024.11.01.621567},
+         archivePrefix={bioRxiv}
 	 }
 ```
