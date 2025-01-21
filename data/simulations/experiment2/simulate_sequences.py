@@ -2,6 +2,10 @@ import physquirrel as psq
 import networkx as nx
 import random, itertools, os, subprocess, re
 
+# This file contains all the funtions to root semi-directed networks, assign branch lengths, and simulate alignments.
+# The functions are listed first, and the script to simulate the alignments from a folder with semi-directed networks is
+# at the end of the file.
+
 #%% New class for Directed Networks with branch lengths
 
 class WDirectedNetwork(psq.DirectedNetwork):
