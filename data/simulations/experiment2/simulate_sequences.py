@@ -67,30 +67,6 @@ class WDirectedNetwork(psq.DirectedNetwork):
             
             # Assign new length
             self.branch_lengths[edge] = new_path_length / average_length
-
-
-        # """Uniformly at random assigns every branch a length from [0,1]. Then, scales
-        # all branch lengths by a factor such that for every leaf, the average length
-        # over all paths from the root to the leaf becomes 'average_path_length'."""
-        
-        # for edge in self.edges:
-        #     length = random.uniform(0.0, 1.0)
-        #     self.branch_lengths[edge] = length
-        
-        # root = self.root_node()
-        # path_lengths = dict()
-        # for leaf in self.leaves:
-        #     all_paths = list(nx.all_simple_paths(self, source=root, target=leaf))
-        #     total_length = 0
-        #     for path in all_paths:
-        #         total_length += sum(self.branch_lengths.get((path[i], path[i + 1]), 0) for i in range(len(path) - 1))
-        #     path_lengths[leaf] = total_length / len(all_paths)
-        
-        # current_average_length = sum(path_lengths.values()) / len(path_lengths.values())
-        # factor = average_path_length / current_average_length
-        
-        # for edge in self.branch_lengths.keys():
-        #     self.branch_lengths[edge] = self.branch_lengths[edge] * factor
             
     def displayed_trees(self):
         """Returns a list of all trees (as WDirectedNetworks) displayed by the network,
@@ -236,7 +212,7 @@ class WDirectedNetwork(psq.DirectedNetwork):
             file.write(enewick)
             
     def save_displayed_trees_to_file(self, filename, overwrite=False, sequence_length=None):
-        """Saves the displayed trees of the network as enewick strings to a file.
+        """Saves the displayed trees of the network as enewick strings to a single file.
         Takes as optional argument an integer 'sequence length', which is then divided equally over the 
         displayed trees for input to seq-gen. In particular every line gets [len] in front."""
         if overwrite == False and os.path.exists(filename):
@@ -264,7 +240,7 @@ class WDirectedNetwork(psq.DirectedNetwork):
                 
     def load_from_enewick(self, enewick_string):
         """Clears the network and loads the network from the given enewick_string (including branch lengths).
-        Requires 'phylox'. Run 'pip install phylox' first."""
+        Requires 'phylox'. Download with 'pip install phylox' first."""
         
         import phylox
         from phylox.newick_parser import dinetwork_to_extended_newick, extended_newick_to_dinetwork
@@ -396,6 +372,8 @@ def create_weighted_networks(input_folder, output_folder):
         new_filename = "W" + filename[1:]
         WDN.save_to_file(output_folder + new_filename)
 
+
+
 #%% Function to save the displayed trees of the created WDirectedNetworks in seq-gen format
 
 def save_displayed_trees(input_folder, output_folder, network_alignment_lengths):
@@ -414,21 +392,24 @@ def save_displayed_trees(input_folder, output_folder, network_alignment_lengths)
             new_file = "DT" + filename[3:-4] + f"_LEN{len_string}.txt"
             WDN.save_displayed_trees_to_file(output_folder + new_file, sequence_length=length)
 
+
+
 #%% Functions to simulate an alignment for each displayed tree file
 
-def run_seq_gen(input_file, output_file, length, nr_trees, model="HKY", tstv=4.0):
+def run_seq_gen(input_file, output_file, length, nr_trees, seqgen_path, model="HKY", tstv=4.0):
     """
     Runs Seq-Gen using a file of Newick strings as input and saves the output in output_file.
     Args:
         model (str): Substitution model (default is "HKY").
         length (int): Sequence length
+        seqgen_path (str): path to seqgen binary
         nr_trees (int): number of trees in the input_file to simulate along
         tstv (float): TS/TV ratio (default = 4.0)
     """
 
     # Prepare the Seq-Gen command
     command = [
-        "/home/nholtgreve/programs/Seq-Gen-master/source/seq-gen",     # Replace with the actual path if it's not in the same directory
+        seqgen_path,
         "-m" + model,    # Substitution model
         "-l" + str(length),  # Sequence length
         "-t" + str(tstv),    # TS/TV parameter
@@ -443,9 +424,7 @@ def run_seq_gen(input_file, output_file, length, nr_trees, model="HKY", tstv=4.0
     
     return result.stdout
 
-
-
-def simulate_alignments(input_folder, output_folder):
+def simulate_alignments(input_folder, output_folder, seqgen_path):
     """Simulates a sequence alignment (in .fasta format) along all the displayed tree files in the 'input_folder'."""
     
     files = os.listdir(input_folder)
@@ -459,8 +438,7 @@ def simulate_alignments(input_folder, output_folder):
         length = int(length_string)
         nr_trees = min(2**int(ret_string), length)
         
-        run_seq_gen(input_folder+filename, output_folder+new_filename, length=length, nr_trees=nr_trees, model="HKY", tstv=4.0)
-
+        run_seq_gen(input_folder+filename, output_folder+new_filename, length=length, nr_trees=nr_trees, seqgen_path=seqgen_path, model="HKY", tstv=4.0)
 
 
 
@@ -482,41 +460,5 @@ network_alignment_lengths = [1000, 10000, 100000, 1000000]
 
 # Simulate an alignment for every displayed trees file.
 output_folder_alignments = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/simulated_alignments/"
-simulate_alignments(output_folder_displayed_trees, output_folder_alignments)
-
-#%%
-#folder = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/generated_networks_lengths/"
-#test_net_file = folder + "WDN00001_L00010_R00002.txt"
-#WDN = WDirectedNetwork()
-#WDN.load_from_file(test_net_file)
-
-
-
-# N = psq.random_semi_directed_network(6, 1)
-# N.visualize(internal_labels=True)
-
-
-# WDN = sdnetwork_to_wdnetwork(N)
-# WDN.visualize(internal_labels=True)
-# WDN.assign_new_branch_lengths()     
-# trees = WDN.displayed_trees()
-# for tree in trees:
-#     tree.visualize(internal_labels=True)
-#     print(tree.create_enewick())
-
-# enewick = WDN.create_enewick()
-# print(enewick)
-
-# WDN2 = WDirectedNetwork()
-# WDN2.load_from_enewick(enewick)
-
-
-#WDN = WDirectedNetwork()
-#WDN.add_edges_from([(1,2), (2,3),(2,4), (4,5), (4, 6)])
-#WDN.add_leaves_from([3,5,6])    
-
-#outtest = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/tmp/testtest1.txt"
-#test_file = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/displayed_trees_lengths/DT00001_L00010_R00002_LEN000000001000.txt"
-#test2 = '/home/nholtgreve/programs/Seq-Gen-master/examples/recombinant.tree'
-
-#run_seq_gen(test_file, outtest, length=1000, nr_trees=4)
+seq_gen_binary = "/path/to/seqgen/binary/Seq-Gen-master/source/seq-gen"
+simulate_alignments(output_folder_displayed_trees, output_folder_alignments, seq_gen_binary)
