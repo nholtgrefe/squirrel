@@ -1,14 +1,17 @@
 import physquirrel as psq
 import os, re
-    
+
+# Folder containing orginal semi-directed networks
 network_folder = "/path/to/folder/with/generated_sdnetworks/"
 network_files = os.listdir(network_folder)
 network_files.sort()
 
+# Folder containing simulated alignments
 sequence_folder = "/path/to/folder/with/simulated_alignments/"
 sequence_files = os.listdir(sequence_folder)
 sequence_files.sort()
 
+# File to write results to
 result_file = "/path/to/file/with/results/results_experiment2.txt"
 
 with open(result_file, 'a') as f:
