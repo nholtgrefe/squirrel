@@ -14,9 +14,11 @@ sequence_files.sort()
 # File to write results to
 result_file = "/path/to/file/with/results/results_experiment2.txt"
 
+# Add header line
 with open(result_file, 'a') as f:
     f.write("file \t QC \t QS \t ret \n")
 
+# Iterate through networks
 for network_file in network_files:
     match = re.match(r"SDN(\d+)_L(\d+)_R(\d+)", network_file)
     id_string, _, _ = match.groups()
@@ -56,3 +58,5 @@ for network_file in network_files:
         with open(result_file, 'a') as f:
             f.write(sequence_file + "\t")
             f.write("\t".join(map(str, info)) + "\n")
+
+# This code will produce a tab-delimited .txt file, which we later converted into a .csv file for better viewing on GitHub
