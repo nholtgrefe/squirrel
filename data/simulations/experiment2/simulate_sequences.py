@@ -440,25 +440,23 @@ def simulate_alignments(input_folder, output_folder, seqgen_path):
         
         run_seq_gen(input_folder+filename, output_folder+new_filename, length=length, nr_trees=nr_trees, seqgen_path=seqgen_path, model="HKY", tstv=4.0)
 
-
-
 #%% Code to create simulated sequence alignments
 
-# Folder containing all randomly generated SemiDirectedNetworks
-input_folder_sdnetworks = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/generated_networks/"
+# Folder containing all randomly generated SemiDirectedNetworks (from Experiment 1)
+input_folder_sdnetworks = "/path/to/folder/with/generated_sdnetworks/"
 
 # Folder to save all newly created DirectedNetworks with branch lengths
-output_folder_wdnetworks = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/generated_networks_lengths/"
-    
+output_folder_wdnetworks = "/path/to/folder/with/generated_dnetworks/"
+
 # Turn all SD-networks into WD-networks
-#create_weighted_networks(input_folder_sdnetworks, output_folder_wdnetworks)
+create_weighted_networks(input_folder_sdnetworks, output_folder_wdnetworks)
 
 # Save the displayed trees of each WD-network in seq-gen format (one file per sequence length)
-output_folder_displayed_trees = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/displayed_trees_lengths/"
+output_folder_displayed_trees = "/path/to/temporary/folder/with/seqgen/input/displayed_trees/"
 network_alignment_lengths = [1000, 10000, 100000, 1000000]
-#save_displayed_trees(output_folder_wdnetworks, output_folder_displayed_trees, network_alignment_lengths)
+save_displayed_trees(output_folder_wdnetworks, output_folder_displayed_trees, network_alignment_lengths)
 
-# Simulate an alignment for every displayed trees file.
-output_folder_alignments = "/home/nholtgreve/Documents/Projects/Phylogenetics/Level1 heuristic from quarnets/Code/SQuIrReL/data/experiments/simulated_alignments/"
+# Simulate an alignment for every displayed trees file, assumes the SeqGen program is installed.
+output_folder_alignments = "/path/to/folder/with/simulated_alignments/"
 seq_gen_binary = "/path/to/seqgen/binary/Seq-Gen-master/source/seq-gen"
 simulate_alignments(output_folder_displayed_trees, output_folder_alignments, seq_gen_binary)
