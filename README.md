@@ -17,10 +17,10 @@ If you use any of the code in this repository, please cite the corresponding pap
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
 > *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.* 2024. bioRxiv: [10.1101/2024.11.01.621567](https://doi.org/10.1101/2024.11.01.621567)
 
-Or in `bibtex` format:
+In `bibtex` format:
 ```
 @misc{holtgrefe2024squirrel,
-	 title={Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments}, 
+	 title="{Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments}", 
 	 author={Holtgrefe, Niels and Huber, Katharina T, and van Iersel, Leo and Jones, Mark and Martin, Samuel and Moulton, Vincent},
 	 year={2024},
          archivePrefix={bioRxiv},
