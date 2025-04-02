@@ -62,4 +62,5 @@ For a complete overview of different methods and extra parameter options, please
 If you use `physquirrel`, please cite the corresponding paper:
 
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
-> *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.* 2024. bioRxiv: [10.1101/2024.11.01.621567](https://doi.org/10.1101/2024.11.01.621567)
+> *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.*
+> Molecular Biology and Evolution. 2025. msaf067. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
