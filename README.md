@@ -19,11 +19,12 @@ If you use any of the code in this repository, please cite the corresponding pap
 
 In `bibtex` format:
 ```
-@misc{holtgrefe2024squirrel,
+@misc{holtgrefe2025squirrel,
 	 title="{Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments}", 
 	 author={Holtgrefe, Niels and Huber, Katharina T, and van Iersel, Leo and Jones, Mark and Martin, Samuel and Moulton, Vincent},
-	 year={2024},
-         archivePrefix={bioRxiv},
-	 eprint={10.1101/2024.11.01.621567}
+         journal={Molecular Biology and Evolution},
+         pages={msaf067},
+         year={2025},
+         doi={https://doi.org/10.1093/molbev/msaf067}
 	 }
 ```
