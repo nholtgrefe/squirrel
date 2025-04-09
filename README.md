@@ -17,7 +17,7 @@ The biological data sets, simulation results and used Python scripts from the pa
 If you use any of the code in this repository, please cite the corresponding paper:
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
 > *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.*
-> Molecular Biology and Evolution. 2025. msaf067. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
+> Molecular Biology and Evolution. 2025. 42(4):msaf067. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
 
 In `bibtex` format:
 ```
