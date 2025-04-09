@@ -2,7 +2,7 @@
 This folder contains the biological datasets, generated networks, simulated sequences, python scripts and results of the simulation experiments of the paper:
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
 > *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.*
-> Molecular Biology and Evolution. 2025. 42(4):msaf067. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
+> Molecular Biology and Evolution, 42(4):msaf067, 2025. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
 
 The results in the paper and in this repository were all obtained using version `1.0.6` of `physquirrel`.
 
