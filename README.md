@@ -27,6 +27,8 @@ In `bibtex` format:
          journal={Molecular Biology and Evolution},
          pages={msaf067},
          year={2025},
+	 volume = {42},
+	 number = {4},
          doi={https://doi.org/10.1093/molbev/msaf067}
 	 }
 ```
