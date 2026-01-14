@@ -1,5 +1,3 @@
-[[DOI]([https://doi.org/10.1234/example](https://doi.org/10.1093/molbev/msaf067))
-
 # Squirrel
 This is the repository corresponding to the paper: 
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
