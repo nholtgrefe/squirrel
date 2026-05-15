@@ -1,0 +1,35 @@
+[build-system]
+requires = ['setuptools>=54']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "physquirrel"
+version = "1.0.6"
+description = "Package for reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments"
+authors = [
+    {name = "Niels Holtgrefe", email = "n.a.l.holtgrefe@tudelft.nl"},
+]
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "numpy >= 1.20",
+    "networkx >= 3.0",
+    "matplotlib >= 3.0",
+    "scipy >= 1.14"
+]
+
+[project.urls]
+Homepage = "https://github.com/nholtgrefe/squirrel/tree/main/physquirrel"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
