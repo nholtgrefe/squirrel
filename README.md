@@ -30,7 +30,7 @@ Runtime dependencies (`numpy`, `networkx`, `matplotlib`, `scipy`) are installed 
 
 ## Documentation
 
-For the full manual and API reference, visit the **[physquirrel docs](https://github.com/nholtgrefe/squirrel/blob/main/DOCS.md)**.
+For more detailed usage instructions visit the **[physquirrel docs](https://github.com/nholtgrefe/squirrel/blob/main/DOCS.md)** and/or check the docstrings in the source code.
 
 ## Citation
 
