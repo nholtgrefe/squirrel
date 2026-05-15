@@ -143,3 +143,6 @@ sandbox/
 
 # Sixth - development artifacts and temporary data
 .sixth/
+
+# AI agents
+.claude/
