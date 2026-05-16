@@ -43,4 +43,3 @@ Quartet distance
 
 .. automodule:: physquirrel.algorithms.qdistance
    :members:
-   :exclude-members: _rho_distance

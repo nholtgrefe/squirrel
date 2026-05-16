@@ -16,66 +16,8 @@ from phylozoo.core.distance import DistanceMatrix
 from phylozoo.utils.exceptions import PhyloZooValueError
 
 if TYPE_CHECKING:
-    from phylozoo.core.quartet.qprofile import QuartetProfile
     from phylozoo.core.quartet.qprofileset import QuartetProfileSet
     from phylozoo.core.primitives.partition import Partition
-
-
-def _rho_distance(
-    profile: 'QuartetProfile',
-    leaf1: str,
-    leaf2: str,
-    rho: tuple[float, float, float, float],
-) -> float:
-    """
-    Compute rho-distance between two leaves in a quartet profile.
-
-    If the profile has 1 quartet (split quarnet), uses split-based logic:
-    - Same side of split: rho_c
-    - Different sides: rho_s
-
-    If the profile has 2 quartets (four-cycle), uses circular ordering logic:
-    - Adjacent in ordering: rho_a
-    - Opposite in ordering: rho_o
-
-    Parameters
-    ----------
-    profile : QuartetProfile
-    leaf1 : str
-    leaf2 : str
-    rho : tuple[float, float, float, float]
-        (rho_c, rho_s, rho_a, rho_o)
-
-    Returns
-    -------
-    float
-    """
-    rho_c, rho_s, rho_a, rho_o = rho
-    num_quartets = len(profile.quartets)
-
-    if num_quartets == 1:
-        quartet = next(iter(profile.quartets))
-        split = quartet.split
-        if split is None:
-            raise PhyloZooValueError("Quartet must be resolved (have a split)")
-        same_side = (leaf1 in split.set1 and leaf2 in split.set1) or (
-            leaf1 in split.set2 and leaf2 in split.set2
-        )
-        return float(rho_c) if same_side else float(rho_s)
-
-    elif num_quartets == 2:
-        circular_orderings = profile.circular_orderings
-        if circular_orderings is None or len(circular_orderings) == 0:
-            raise PhyloZooValueError(
-                "Profile with 2 quartets must have a circular ordering"
-            )
-        ordering = next(iter(circular_orderings))
-        return float(rho_a) if ordering.are_neighbors(leaf1, leaf2) else float(rho_o)
-
-    else:
-        raise PhyloZooValueError(
-            f"Profile must have 1 or 2 quartets, got {num_quartets}"
-        )
 
 
 def quartet_distance_with_partition(
@@ -102,6 +44,16 @@ def quartet_distance_with_partition(
         (rho_c, rho_s, rho_a, rho_o) — distance contributions for different
         quartet topologies. Must satisfy rho_c ≤ rho_s and rho_a ≤ rho_o.
         Default: (0.5, 1.0, 0.5, 1.0).
+
+        For a **split profile** (1 quartet), the distance between two leaves is:
+
+        - ``rho_c`` — same side of the split
+        - ``rho_s`` — opposite sides of the split
+
+        For a **cycle profile** (2 quartets), the distance between two leaves is:
+
+        - ``rho_a`` — adjacent in the circular ordering
+        - ``rho_o`` — opposite in the circular ordering
     weighted_distance : bool
         If True, each profile's rho-distance contribution is scaled by its
         profile weight before averaging. High-confidence profiles then pull

@@ -1,5 +1,5 @@
 """
-Tests for the qdistance module (quartet_distance_with_partition and _rho_distance).
+Tests for the qdistance module (quartet_distance_with_partition).
 """
 
 import pytest
@@ -9,9 +9,8 @@ from phylozoo.core.distance import DistanceMatrix
 from phylozoo.core.primitives.partition import Partition
 from phylozoo.core.quartet.qprofile import QuartetProfile
 from phylozoo.core.quartet.qprofileset import QuartetProfileSet
-
 from physquirrel import SqQuartetProfile, SqQuartetProfileSet
-from physquirrel.algorithms.qdistance import _rho_distance, quartet_distance_with_partition
+from physquirrel.algorithms.qdistance import quartet_distance_with_partition
 
 
 # ---------------------------------------------------------------------------
@@ -63,61 +62,6 @@ def _dense_five_taxon_profileset(weights=None):
         profiles=profiles,
         taxa=frozenset({'A', 'B', 'C', 'D', 'E'}),
     )
-
-
-# ---------------------------------------------------------------------------
-# TestRhoDistance
-# ---------------------------------------------------------------------------
-
-class TestRhoDistance:
-    """Tests for the _rho_distance helper function."""
-
-    def test_split_profile_same_side_returns_rho_c(self) -> None:
-        q = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        profile = SqQuartetProfile([q])
-        assert _rho_distance(profile, 'A', 'B', (0.5, 1.0, 0.5, 1.0)) == pytest.approx(0.5)
-
-    def test_split_profile_different_sides_returns_rho_s(self) -> None:
-        q = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        profile = SqQuartetProfile([q])
-        assert _rho_distance(profile, 'A', 'C', (0.5, 1.0, 0.5, 1.0)) == pytest.approx(1.0)
-
-    @pytest.mark.parametrize('leaf1,leaf2', [('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'A')])
-    def test_cycle_profile_adjacent_returns_rho_a(self, leaf1: str, leaf2: str) -> None:
-        # Circular order A,B,C,D → adjacent splits AB|CD and AD|BC
-        q1 = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        q2 = Quartet(Split({'A', 'D'}, {'B', 'C'}))
-        profile = SqQuartetProfile([q1, q2])
-        assert _rho_distance(profile, leaf1, leaf2, (0.5, 1.0, 0.5, 1.0)) == pytest.approx(0.5)
-
-    @pytest.mark.parametrize('leaf1,leaf2', [('A', 'C'), ('B', 'D')])
-    def test_cycle_profile_opposite_returns_rho_o(self, leaf1: str, leaf2: str) -> None:
-        q1 = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        q2 = Quartet(Split({'A', 'D'}, {'B', 'C'}))
-        profile = SqQuartetProfile([q1, q2])
-        assert _rho_distance(profile, leaf1, leaf2, (0.5, 1.0, 0.5, 1.0)) == pytest.approx(1.0)
-
-    def test_custom_rho_values_used(self) -> None:
-        q = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        profile = SqQuartetProfile([q])
-        assert _rho_distance(profile, 'A', 'B', (0.2, 0.8, 0.2, 0.8)) == pytest.approx(0.2)
-        assert _rho_distance(profile, 'A', 'C', (0.2, 0.8, 0.2, 0.8)) == pytest.approx(0.8)
-
-    def test_unresolved_quartet_raises(self) -> None:
-        # Use base QuartetProfile — SqQuartetProfile itself rejects unresolved quartets.
-        star = Quartet(frozenset({'A', 'B', 'C', 'D'}))
-        profile = QuartetProfile([star])
-        with pytest.raises(Exception, match="resolved"):
-            _rho_distance(profile, 'A', 'B', (0.5, 1.0, 0.5, 1.0))
-
-    def test_three_quartets_raises(self) -> None:
-        # Use base QuartetProfile — SqQuartetProfile itself rejects >2 quartets.
-        q1 = Quartet(Split({'A', 'B'}, {'C', 'D'}))
-        q2 = Quartet(Split({'A', 'C'}, {'B', 'D'}))
-        q3 = Quartet(Split({'A', 'D'}, {'B', 'C'}))
-        profile = QuartetProfile([q1, q2, q3])
-        with pytest.raises(Exception, match="1 or 2"):
-            _rho_distance(profile, 'A', 'B', (0.5, 1.0, 0.5, 1.0))
 
 
 # ---------------------------------------------------------------------------
