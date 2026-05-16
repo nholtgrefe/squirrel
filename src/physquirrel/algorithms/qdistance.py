@@ -144,6 +144,12 @@ def quartet_distance_with_partition(
     set_to_index: dict[frozenset, int] = {part: idx for idx, part in enumerate(set_order)}
     D = np.zeros((n, n), dtype=np.float64)
 
+    # Pre-extract rho scalars so the inner loop doesn't unpack the tuple each iteration.
+    delta_same  = 2.0 * rho_c   # split profile, same side
+    delta_diff  = 2.0 * rho_s   # split profile, different sides
+    delta_adj   = 2.0 * rho_a   # cycle profile, adjacent
+    delta_opp   = 2.0 * rho_o   # cycle profile, opposite
+
     for four_sub_partition in partition.subpartitions(4):
         X_indices: dict[frozenset, int] = {
             X: set_to_index[X] for X in four_sub_partition.parts
@@ -153,11 +159,10 @@ def quartet_distance_with_partition(
             for part in four_sub_partition.parts
             for leaf in part
         }
-        # (i, j) -> [weighted_distance_distance_sum, total_weight]
-        d_accum: dict[tuple[int, int], list[float]] = {
-            (i, j): [0.0, 0.0]
-            for i, j in itertools.combinations(X_indices.values(), 2)
-        }
+        # Two flat dicts instead of one dict-of-lists: one dict lookup per update.
+        pair_keys = list(itertools.combinations(X_indices.values(), 2))
+        d_wsum: dict[tuple[int, int], float] = {k: 0.0 for k in pair_keys}
+        d_wtot: dict[tuple[int, int], float] = {k: 0.0 for k in pair_keys}
 
         for four_leaf_partition in four_sub_partition.representative_partitions():
             four_taxa_set = four_leaf_partition.elements
@@ -168,35 +173,57 @@ def quartet_distance_with_partition(
                     "Profile set must be dense."
                 )
 
-            num_quartets = len(profile.quartets)
+            # Cache the quartets dict once — avoids re-calling the property per pair.
+            quartets = profile.quartets
+            num_quartets = len(quartets)
             if num_quartets == 0 or num_quartets > 2:
                 raise PhyloZooValueError(
                     f"Profile for {four_taxa_set} must have 1 or 2 quartets, "
                     f"got {num_quartets}"
                 )
-            for quartet in profile.quartets:
-                if not quartet.is_resolved():
+            for q in quartets:
+                if not q.is_resolved():
                     raise PhyloZooValueError(
                         f"Profile for {four_taxa_set} contains an unresolved quartet."
                     )
 
-            # When weighted_distance, scale by profile confidence; otherwise treat all equally.
             w = profileset._profiles[four_taxa_set][1] if weighted_distance else 1.0
 
-            for leaf1, leaf2 in itertools.combinations(four_taxa_set, 2):
-                rho_dist = _rho_distance(profile, leaf1, leaf2, rho)
-                Xi = leaf_to_set[leaf1]
-                Xj = leaf_to_set[leaf2]
-                i = X_indices[Xi]
-                j = X_indices[Xj]
-                if i > j:
-                    i, j = j, i
-                d_accum[(i, j)][0] += 2 * rho_dist * w
-                d_accum[(i, j)][1] += w
+            if num_quartets == 1:
+                # Split profile: precompute set1 once; membership test is O(1).
+                set1 = next(iter(quartets)).split.set1
+                for leaf1, leaf2 in itertools.combinations(four_taxa_set, 2):
+                    same = (leaf1 in set1) == (leaf2 in set1)
+                    delta = delta_same if same else delta_diff
+                    i = X_indices[leaf_to_set[leaf1]]
+                    j = X_indices[leaf_to_set[leaf2]]
+                    if i > j:
+                        i, j = j, i
+                    d_wsum[(i, j)] += delta * w
+                    d_wtot[(i, j)] += w
+            else:
+                # Cycle profile: precompute adjacency as a dict of neighbour sets.
+                # One circular ordering suffices (all are equivalent rotations/reflections).
+                ordering = next(iter(profile.circular_orderings))
+                order = list(ordering.order)
+                adj: dict[str, frozenset] = {
+                    order[k]: frozenset({order[k - 1], order[(k + 1) % 4]})
+                    for k in range(4)
+                }
+                for leaf1, leaf2 in itertools.combinations(four_taxa_set, 2):
+                    delta = delta_adj if leaf2 in adj[leaf1] else delta_opp
+                    i = X_indices[leaf_to_set[leaf1]]
+                    j = X_indices[leaf_to_set[leaf2]]
+                    if i > j:
+                        i, j = j, i
+                    d_wsum[(i, j)] += delta * w
+                    d_wtot[(i, j)] += w
 
-        for (i, j), (wsum, wtotal) in d_accum.items():
+        for key in pair_keys:
+            wtotal = d_wtot[key]
             if wtotal > 0:
-                avg = wsum / wtotal
+                avg = d_wsum[key] / wtotal
+                i, j = key
                 D[i, j] += avg
                 D[j, i] += avg
 
