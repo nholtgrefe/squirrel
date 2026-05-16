@@ -5,7 +5,6 @@ from phylozoo import SemiDirectedPhyNetwork, Split
 from phylozoo.core.network.sdnetwork.classifications import is_tree
 from phylozoo.core.network.sdnetwork.conversions import sdnetwork_from_graph
 from phylozoo.core.network.sdnetwork.derivations import split_from_cutedge
-from phylozoo.core.quartet.base import Quartet
 from phylozoo.core.quartet.qprofileset import QuartetProfileSet
 from phylozoo.utils.exceptions import PhyloZooValueError
 
@@ -20,8 +19,11 @@ def _omega_bar(
     """
     Quartet support score for the split X1 ∪ X2 | X3 ∪ X4.
 
-    Only considers trivial, resolved profiles.
-    Returns 1.0 if no quartets are found.
+    All profiles (split and cycle) contribute their profile weight to the
+    denominator. Only trivial (split) profiles whose split agrees with
+    X1∪X2 | X3∪X4 contribute to the numerator. Cycle profiles act as
+    evidence against the split by increasing the denominator only.
+    Returns 1.0 if no profiles are found.
     """
     res = 0.0
     total_sum = 0.0
@@ -29,22 +31,26 @@ def _omega_bar(
     for (x1, x2, x3, x4) in itertools.product(X1, X2, X3, X4):
         four_taxa = frozenset({x1, x2, x3, x4})
         profile = profileset.get_profile(four_taxa)
-        if profile is None or not profile.is_trivial():
+        if profile is None:
+            continue
+
+        pw = profileset.get_profile_weight(four_taxa) or 1.0
+
+        if not profile.is_trivial():
+            # Cycle: positive evidence for a reticulation → counts against split.
+            total_sum += pw
             continue
 
         quartet = next(iter(profile.quartets))
         quartet_split = quartet.split
         if quartet_split is None:
+            # Unresolved: completely ambiguous → skip (neutral).
             continue
 
-        pw = profileset.get_profile_weight(four_taxa) or 1.0
-        qw = profile.get_weight(quartet) or 1.0
-        total_weight = pw * qw
-        total_sum += total_weight
-
+        total_sum += pw
         if (quartet_split.set1 == {x1, x2} and quartet_split.set2 == {x3, x4}) or \
            (quartet_split.set2 == {x1, x2} and quartet_split.set1 == {x3, x4}):
-            res += total_weight
+            res += pw
 
     return res / total_sum if total_sum > 0 else 1.0
 
