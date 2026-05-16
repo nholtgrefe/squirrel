@@ -5,6 +5,7 @@ from .qjoining import quartet_joining, adapted_quartet_joining
 from .unresolve_tree import unresolve_tree, split_support
 from .cycle_resolution import resolve_cycles
 from .qsimilarity import sqprofileset_from_network, sqprofileset_similarity
+from .qdistance import quartet_distance_with_partition
 
 __all__ = [
     'squirrel',
@@ -18,4 +19,5 @@ __all__ = [
     'resolve_cycles',
     'sqprofileset_from_network',
     'sqprofileset_similarity',
+    'quartet_distance_with_partition',
 ]

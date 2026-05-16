@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 [project]
 name = "physquirrel"
 version = "2.0.0"
-description = "Inference package for reconstructing semi-directed phylogenetic level-1 networks using the SQUIRREL algorithm"
+description = "a package for reconstructing level-1 phylogenetic networks from sequence alignments or 4-leaf subnetworks"
 authors = [
     {name = "Niels Holtgrefe", email = "n.a.l.holtgrefe@tudelft.nl"},
 ]

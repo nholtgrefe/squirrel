@@ -29,7 +29,8 @@ names to their detailed documentation sections.
        :func:`~physquirrel.algorithms.unresolve_tree.split_support`,
        :func:`~physquirrel.algorithms.cycle_resolution.resolve_cycles`,
        :func:`~physquirrel.algorithms.qsimilarity.sqprofileset_from_network`,
-       :func:`~physquirrel.algorithms.qsimilarity.sqprofileset_similarity`
+       :func:`~physquirrel.algorithms.qsimilarity.sqprofileset_similarity`,
+       :func:`~physquirrel.algorithms.qdistance.qdistance`
      - :doc:`algorithms`
    * - :func:`~physquirrel.convenience.delta_heuristic_from_msa`,
        :func:`~physquirrel.convenience.squirrel_from_distances`,

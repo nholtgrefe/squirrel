@@ -37,3 +37,10 @@ Profile similarity and scoring
 .. automodule:: physquirrel.algorithms.qsimilarity
    :members:
    :exclude-members: _circular_orders_from_cycles
+
+Quartet distance
+----------------
+
+.. automodule:: physquirrel.algorithms.qdistance
+   :members:
+   :exclude-members: _rho_distance

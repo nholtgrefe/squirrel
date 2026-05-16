@@ -22,6 +22,7 @@ from .algorithms import (
     resolve_cycles,
     sqprofileset_from_network,
     sqprofileset_similarity,
+    quartet_distance_with_partition,
 )
 
 # Convenience helpers
@@ -56,6 +57,7 @@ __all__ = [
     'resolve_cycles',
     'sqprofileset_from_network',
     'sqprofileset_similarity',
+    'quartet_distance_with_partition',
     'to_psq',
     'from_psq',
     'to_profile_list',

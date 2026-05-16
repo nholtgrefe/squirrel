@@ -5,7 +5,7 @@ from .tsp import approximate_tsp_tour, optimal_tsp_tour
 from phylozoo.core.primitives.circular_ordering import CircularSetOrdering
 from phylozoo.core.primitives.partition import Partition
 from phylozoo.core.primitives.m_multigraph.features import source_components
-from phylozoo.core.quartet.qdistance import quartet_distance_with_partition
+from .qdistance import quartet_distance_with_partition
 from phylozoo.core.network.sdnetwork.conversions import sdnetwork_from_graph
 from phylozoo.core.network.sdnetwork.derivations import partition_from_blob
 from phylozoo.core.network.sdnetwork.features import cut_vertices
@@ -23,6 +23,7 @@ def _qprofiles_to_circular_ordering(
     partition: Partition,
     rho: tuple[float, float, float, float] = (0.5, 1.0, 0.5, 1.0),
     tsp_method: Literal['optimal', 'simulated_annealing', 'greedy', 'christofides'] = 'optimal',
+    weighted_distance: bool = False,
 ) -> CircularSetOrdering:
     """
     Compute the optimal circular set ordering from quartet profiles via TSP.
@@ -35,6 +36,8 @@ def _qprofiles_to_circular_ordering(
         Distance contributions (rho_c, rho_s, rho_a, rho_o). Default: (0.5, 1.0, 0.5, 1.0).
     tsp_method : str
         One of 'optimal', 'simulated_annealing', 'greedy', 'christofides'.
+    weighted_distance : bool
+        If True, profile weights are used to scale distance contributions.
 
     Returns
     -------
@@ -45,7 +48,9 @@ def _qprofiles_to_circular_ordering(
             f"Partition must have at least 3 sets for TSP, got {len(partition)}"
         )
 
-    dist_matrix = quartet_distance_with_partition(profileset=profileset, partition=partition, rho=rho)
+    dist_matrix = quartet_distance_with_partition(
+        profileset=profileset, partition=partition, rho=rho, weighted_distance=weighted_distance
+    )
 
     if tsp_method == 'optimal':
         tour = optimal_tsp_tour(dist_matrix)
@@ -300,6 +305,7 @@ def resolve_cycles(
     outgroup: str | None = None,
     rho: tuple[float, float, float, float] = (0.5, 1.0, 0.5, 1.0),
     tsp_threshold: int | None = 13,
+    weighted_distance: bool = False,
 ) -> SemiDirectedPhyNetwork:
     """
     Convert a tree to a level-1 network by replacing high-degree vertices with cycles.
@@ -318,6 +324,10 @@ def resolve_cycles(
     rho : tuple of 4 floats
     tsp_threshold : int | None
         Max partition size for optimal TSP; larger uses simulated annealing.
+    weighted_distance : bool
+        If True, profile weights are used to scale TSP distance contributions
+        so that high-confidence profiles pull the circular ordering more than
+        low-confidence ones. Default: False.
 
     Returns
     -------
@@ -342,7 +352,7 @@ def resolve_cycles(
             else 'simulated_annealing'
         )
         circular_setorder = _qprofiles_to_circular_ordering(
-            profileset, induced_partition, rho=rho, tsp_method=tsp_method
+            profileset, induced_partition, rho=rho, tsp_method=tsp_method, weighted_distance=weighted_distance
         )
         hybrid_ranking = _qprofiles_to_hybrid_ranking(profileset, induced_partition, weights=True)
 
