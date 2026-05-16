@@ -4,13 +4,13 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = "physquirrel"
-version = "1.0.7"
-description = "Package for reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks and sequence alignments"
+version = "2.0.0"
+description = "Inference package for reconstructing semi-directed phylogenetic level-1 networks using the SQUIRREL algorithm"
 authors = [
     {name = "Niels Holtgrefe", email = "n.a.l.holtgrefe@tudelft.nl"},
 ]
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent"
@@ -20,10 +20,28 @@ license = "MIT"
 dependencies = [
     "numpy >= 1.20",
     "networkx >= 3.0",
-    "matplotlib >= 3.0",
-    "scipy >= 1.14"
+    "phylozoo >= 0.1.2",
+    "numba >= 0.56",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest >= 7.0",
+]
+docs = [
+    "sphinx >= 7.0",
+    "pydata-sphinx-theme >= 0.15",
+    "sphinx-autobuild >= 2024.0",
+    "sphinx-copybutton >= 0.5",
+]
+
+viz = [
+    "phylozoo[viz] >= 0.1.2",
+]
+
+graphviz = [
+    "phylozoo[graphviz] >= 0.1.2",
+]
 [project.urls]
 Homepage = "https://github.com/nholtgrefe/squirrel/tree/main/physquirrel"
 
