@@ -16,8 +16,10 @@ def split_support(profileset: QuartetProfileSet, split: Split) -> float:
     """
     Compute quartet support for a split A|B.
 
-    Returns the weighted ratio of trivial, resolved profiles that agree with the
-    split over all 4-taxon sets {a1, a2, b1, b2} with a1, a2 ∈ A, b1, b2 ∈ B.
+    All profiles (split and cycle) contribute their profile weight to the
+    denominator. Only trivial (split) profiles whose split agrees with A|B
+    contribute to the numerator. Cycle profiles act as evidence against the
+    split by increasing the denominator only.
 
     Parameters
     ----------
@@ -26,7 +28,7 @@ def split_support(profileset: QuartetProfileSet, split: Split) -> float:
 
     Returns
     -------
-    float in [0, 1], or 0.0 if no matching quartets found.
+    float in [0, 1], or 0.0 if no profiles found.
     """
     if split.is_trivial:
         raise PhyloZooValueError("Split must be non-trivial")
@@ -40,20 +42,25 @@ def split_support(profileset: QuartetProfileSet, split: Split) -> float:
         for b1, b2 in itertools.combinations(split.set2, 2):
             four_taxa = frozenset({a1, a2, b1, b2})
             profile = profileset.get_profile(four_taxa)
-            if profile is None or not profile.is_trivial():
+            if profile is None:
+                continue
+
+            pw = profileset.get_profile_weight(four_taxa) or 1.0
+
+            if not profile.is_trivial():
+                # Cycle: positive evidence for a reticulation → counts against split.
+                total_weight += pw
                 continue
 
             quartet = next(iter(profile.quartets))
             quartet_split = quartet.split
             if quartet_split is None:
+                # Unresolved: completely ambiguous → skip (neutral).
                 continue
 
-            pw = profileset.get_profile_weight(four_taxa) or 1.0
-            qw = profile.get_weight(quartet) or 1.0
-            total_weight += pw * qw
-
+            total_weight += pw
             if quartet_split == Split({a1, a2}, {b1, b2}):
-                support += pw * qw
+                support += pw
 
     return support / total_weight if total_weight > 0 else 0.0
 

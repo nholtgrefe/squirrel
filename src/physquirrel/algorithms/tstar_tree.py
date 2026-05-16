@@ -61,7 +61,7 @@ def bstar(profileset: QuartetProfileSet) -> SplitSystem:
             for x in split.set1:
                 for y, z in itertools.combinations(split.set2, 2):
                     qs = obtain_split(frozenset({element, x, y, z}))
-                    if qs is not None and qs != Split({x, element}, {y, z}):
+                    if qs != Split({x, element}, {y, z}):
                         add1 = False
                         break
                 if not add1:
@@ -71,7 +71,7 @@ def bstar(profileset: QuartetProfileSet) -> SplitSystem:
             for x, y in itertools.combinations(split.set1, 2):
                 for z in split.set2:
                     qs = obtain_split(frozenset({element, x, y, z}))
-                    if qs is not None and qs != Split({x, y}, {z, element}):
+                    if qs != Split({x, y}, {z, element}):
                         add2 = False
                         break
                 if not add2:

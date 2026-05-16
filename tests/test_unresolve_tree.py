@@ -30,13 +30,16 @@ class TestSplitSupport:
         assert support == 0.0
 
     def test_split_support_partial_match(self) -> None:
+        # q1 and q3 share taxa {A,B,C,D} → non-trivial (cycle) profile for that set.
+        # Cycle profiles count in the denominator as evidence against splits.
+        # q2 on {A,B,C,E} is trivial and agrees → support = 1/(1+1) = 0.5.
         split = Split({'A', 'B'}, {'C', 'D', 'E'})
         q1 = Quartet(Split({'A', 'B'}, {'C', 'D'}))
         q2 = Quartet(Split({'A', 'B'}, {'C', 'E'}))
         q3 = Quartet(Split({'A', 'C'}, {'B', 'D'}))
         profileset = QuartetProfileSet(profiles=[q1, q2, q3], taxa={'A', 'B', 'C', 'D', 'E'})
         support = split_support(profileset, split)
-        assert support == 1.0
+        assert support == 0.5
 
     def test_split_support_trivial_split_raises_error(self) -> None:
         split = Split({'A'}, {'B', 'C', 'D'})
@@ -52,7 +55,9 @@ class TestSplitSupport:
         with pytest.raises(ValueError, match="Split taxa must match profile set taxa"):
             split_support(profileset, split)
 
-    def test_split_support_non_trivial_profile_ignored(self) -> None:
+    def test_split_support_cycle_profile_counts_in_denominator(self) -> None:
+        # A non-trivial (cycle) profile adds its weight to the denominator only.
+        # With only a cycle profile present, support = 0 / pw = 0.0.
         split = Split({'A', 'B'}, {'C', 'D'})
         q1 = Quartet(Split({'A', 'B'}, {'C', 'D'}))
         q2 = Quartet(Split({'A', 'C'}, {'B', 'D'}))
