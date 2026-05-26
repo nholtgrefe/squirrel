@@ -250,7 +250,7 @@ class QuartetSplitSet(SplitSet):
                     new_bstar.append(candidate_split1)
                 if add2 == True:
                     new_bstar.append(candidate_split2)
-                
-                bstar = new_bstar
+
+            bstar = new_bstar
 
         return SplitSystem(bstar)
