@@ -766,8 +766,7 @@ class DenseQuarnetSet(QuarnetSet):
                     ret_counts[relabelled_q].append(relabelled_ret)
                 else:
                     ret_counts[relabelled_q] = [relabelled_ret]
-        
-            if isinstance(q, QuartetTree) or isinstance(q, SingleTriangle) or isinstance(q, DoubleTriangle):
+            elif isinstance(q, QuartetTree) or isinstance(q, SingleTriangle) or isinstance(q, DoubleTriangle):
                 q = SplitQuarnet(q.split)
                 relabelled_q = q.relabel(mapping)
                 votes.append(relabelled_q)
