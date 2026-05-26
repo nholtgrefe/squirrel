@@ -757,7 +757,7 @@ class DenseQuarnetSet(QuarnetSet):
             q = self.quarnet(four_leafset.elements)
             if isinstance(q, FourCycle):
                 relabelled_ret = mapping[q.reticulation_leaf]
-                q = CycleQuarnet(q.circular_order)
+                q = CycleQuarnet(q.circular_order, weight=q.weight)
                 
                 relabelled_q = q.relabel(mapping)
                 votes.append(relabelled_q)
@@ -766,6 +766,7 @@ class DenseQuarnetSet(QuarnetSet):
                     ret_counts[relabelled_q].append(relabelled_ret)
                 else:
                     ret_counts[relabelled_q] = [relabelled_ret]
+            
             elif isinstance(q, QuartetTree) or isinstance(q, SingleTriangle) or isinstance(q, DoubleTriangle):
                 q = SplitQuarnet(q.split)
                 relabelled_q = q.relabel(mapping)
