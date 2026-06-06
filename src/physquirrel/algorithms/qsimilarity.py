@@ -1,3 +1,4 @@
+import itertools
 from typing import Any, Iterator, TYPE_CHECKING
 
 from phylozoo.core.quartet.base import Quartet
@@ -207,8 +208,22 @@ def sqprofileset_from_network(
                         SqQuartetProfile([q1, q2], reticulation_leaf=ret_leaf)
                     )
             else:
-                for repr_order in sub_order.representative_orderings():
-                    a, b, c, d = list(repr_order.order)
+                # Non-hybrid sub-ordering: the canonical CircularOrdering form
+                # may group the wrong adjacent pairs. Recover the correct split
+                # by ordering sub-parts by their position in the linear path
+                # obtained when the hybrid is removed from the full cycle.
+                full_setorder = list(set_ordering.setorder)
+                k = len(full_setorder)
+                hybrid_idx = next(
+                    i for i, s in enumerate(full_setorder) if s == ret_set
+                )
+                linear_pos = {
+                    full_setorder[(hybrid_idx + 1 + j) % k]: j
+                    for j in range(k - 1)
+                }
+                sub_parts = sorted(sub_order.setorder, key=lambda s: linear_pos[s])
+                for combo in itertools.product(*sub_parts):
+                    a, b, c, d = combo
                     quartet = Quartet(Split({a, b}, {c, d}))
                     sq_quartet_profiles.append(SqQuartetProfile([quartet]))
 

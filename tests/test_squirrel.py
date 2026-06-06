@@ -11,6 +11,7 @@ from phylozoo.core.quartet.base import Quartet
 from phylozoo.core.split.base import Split
 from phylozoo.core.network.sdnetwork.derivations import root_at_outgroup
 from phylozoo import DistanceMatrix
+from phylozoo.utils.parallel import ParallelConfig, ParallelBackend
 from physquirrel import (
     squirrel,
     SqQuartetProfile,
@@ -347,3 +348,74 @@ class TestSquirrelIntegration:
         network2.validate()
 
         assert network1.taxa == network2.taxa
+
+
+class TestRepresentativeMode:
+    """Tests for the representative_mode parameter of squirrel()."""
+
+    def test_default_mode_is_average(self, five_taxon_profileset) -> None:
+        net = squirrel(five_taxon_profileset)
+        assert isinstance(net, SemiDirectedPhyNetwork)
+        net.validate()
+
+    def test_best_mode_works(self, five_taxon_profileset) -> None:
+        net = squirrel(five_taxon_profileset, representative_mode='best')
+        assert isinstance(net, SemiDirectedPhyNetwork)
+        net.validate()
+
+    def test_cycle_profileset_both_modes_return_valid_network(
+        self, cycle_four_taxon_profileset
+    ) -> None:
+        for mode in ('average', 'best'):
+            net = squirrel(cycle_four_taxon_profileset, representative_mode=mode)
+            assert isinstance(net, SemiDirectedPhyNetwork)
+            net.validate()
+
+    def test_tree_profileset_no_hybrid_either_mode(
+        self, simple_four_taxon_profileset
+    ) -> None:
+        for mode in ('average', 'best'):
+            net = squirrel(simple_four_taxon_profileset, representative_mode=mode)
+            assert len(net.hybrid_nodes) == 0
+
+    def test_tree_profileset_perfect_score_either_mode(
+        self, simple_four_taxon_profileset
+    ) -> None:
+        ps = simple_four_taxon_profileset
+        for mode in ('average', 'best'):
+            net = squirrel(ps, representative_mode=mode)
+            score = sqprofileset_similarity(ps, sqprofileset_from_network(net))
+            assert score == pytest.approx(1.0, abs=1e-6)
+
+
+class TestParallelExecution:
+    """Tests for the parallel parameter of squirrel()."""
+
+    def test_parallel_none_works(self, five_taxon_profileset) -> None:
+        net = squirrel(five_taxon_profileset, parallel=None)
+        assert isinstance(net, SemiDirectedPhyNetwork)
+        net.validate()
+
+    def test_threading_returns_valid_network(self, five_taxon_profileset) -> None:
+        cfg = ParallelConfig(backend=ParallelBackend.THREADING, n_jobs=2)
+        net = squirrel(five_taxon_profileset, parallel=cfg)
+        assert isinstance(net, SemiDirectedPhyNetwork)
+        net.validate()
+
+    def test_threading_matches_sequential_taxa(self, five_taxon_profileset) -> None:
+        net_seq = squirrel(five_taxon_profileset, parallel=None, representative_mode='best')
+        cfg = ParallelConfig(backend=ParallelBackend.THREADING, n_jobs=2)
+        net_par = squirrel(five_taxon_profileset, parallel=cfg, representative_mode='best')
+        assert net_seq.taxa == net_par.taxa
+
+    def test_multiprocessing_returns_valid_network(self, five_taxon_profileset) -> None:
+        cfg = ParallelConfig(backend=ParallelBackend.MULTIPROCESSING, n_jobs=2)
+        net = squirrel(five_taxon_profileset, parallel=cfg)
+        assert isinstance(net, SemiDirectedPhyNetwork)
+        net.validate()
+
+    def test_multiprocessing_matches_sequential_taxa(self, five_taxon_profileset) -> None:
+        net_seq = squirrel(five_taxon_profileset, parallel=None, representative_mode='best')
+        cfg = ParallelConfig(backend=ParallelBackend.MULTIPROCESSING, n_jobs=2)
+        net_par = squirrel(five_taxon_profileset, parallel=cfg, representative_mode='best')
+        assert net_seq.taxa == net_par.taxa

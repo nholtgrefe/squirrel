@@ -50,3 +50,8 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as integration tests on real data (deselect with -m 'not slow')",
+]

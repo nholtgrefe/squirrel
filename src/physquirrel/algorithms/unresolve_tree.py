@@ -105,7 +105,10 @@ def unresolve_tree(
         return
 
     split_supports = {s: split_support(profileset, s) for s in non_trivial_splits}
-    sorted_splits = sorted(non_trivial_splits, key=lambda x: split_supports[x])
+    sorted_splits = sorted(
+        non_trivial_splits,
+        key=lambda x: (split_supports[x], min(sorted(x.set1), sorted(x.set2))),
+    )
 
     yield current_tree
 

@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Literal
 
 from phylozoo import SemiDirectedPhyNetwork, DirectedPhyNetwork
 from phylozoo.core.network.sdnetwork.derivations import root_at_outgroup
@@ -27,11 +27,11 @@ def _process_contracted_tree(
     if is_serialized:
         from phylozoo.core.network.sdnetwork import io as _sdnetwork_io  # noqa: F401
         from phylozoo import SemiDirectedPhyNetwork as _SdNet
-        from ..datatypes import io  # noqa: F401 — registers pz format in worker
+        from ..datatypes import io  # noqa: F401 — registers psq format in worker
         from ..datatypes.sqprofileset import SqQuartetProfileSet as _SqPS
 
         contracted_tree = _SdNet.from_string(tree_input, format='phylozoo-dot')
-        profileset = _SqPS.from_string(profileset_input, format='pz')  # type: ignore
+        profileset = _SqPS.from_string(profileset_input, format='psq')  # type: ignore
     else:
         contracted_tree = tree_input  # type: ignore
         profileset = profileset_input  # type: ignore
@@ -49,6 +49,7 @@ def squirrel(
     profileset: SqQuartetProfileSet,
     outgroup: str | None = None,
     parallel: ParallelConfig | None = None,
+    representative_mode: Literal['average', 'best'] = 'average',
     **kwargs: Any,
 ) -> SemiDirectedPhyNetwork | DirectedPhyNetwork:
     """
@@ -68,13 +69,27 @@ def squirrel(
         If provided, returns a DirectedPhyNetwork rooted at the outgroup edge.
     parallel : ParallelConfig | None
         Parallelization config. None → sequential.
+    representative_mode : {'average', 'best'}
+        Controls how quartet profiles within each 4-subpartition are aggregated
+        when computing the TSP distance matrix for cycle resolution.
+
+        - ``'average'`` (default): average rho-distance over all representative
+          leaf-partitions. Reflects the full empirical distribution of quartet
+          signals across taxa within each partition set.
+        - ``'best'``: vote (weighted by profile weight) for the plurality
+          topology per 4-subpartition and use only that topology's distance
+          contributions. Mirrors the v1 behaviour of electing a single
+          representative quarnet per 4-tuple of partition sets.
     **kwargs
-        Passed to resolve_cycles (rho, tsp_threshold).
+        Additional arguments passed to resolve_cycles (e.g. rho, tsp_threshold,
+        weighted_distance).
 
     Returns
     -------
     SemiDirectedPhyNetwork | DirectedPhyNetwork
     """
+    kwargs['representative_mode'] = representative_mode
+
     tstar = tstar_tree(profileset)
     qj_tree = adapted_quartet_joining(profileset, starting_tree=tstar)
 
@@ -90,7 +105,7 @@ def squirrel(
 
     elif parallel.backend == ParallelBackend.MULTIPROCESSING:
         contracted_trees = list(unresolve_tree(qj_tree, profileset))
-        profileset_pz = profileset.to_string(format='pz')
+        profileset_pz = profileset.to_string(format='psq')
         process_args = [
             (tree.to_string(format='phylozoo-dot'), profileset_pz, outgroup, kwargs)
             for tree in contracted_trees

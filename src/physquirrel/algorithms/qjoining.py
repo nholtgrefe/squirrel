@@ -28,7 +28,7 @@ def _omega_bar(
     res = 0.0
     total_sum = 0.0
 
-    for (x1, x2, x3, x4) in itertools.product(X1, X2, X3, X4):
+    for (x1, x2, x3, x4) in itertools.product(sorted(X1), sorted(X2), sorted(X3), sorted(X4)):
         four_taxa = frozenset({x1, x2, x3, x4})
         profile = profileset.get_profile(four_taxa)
         if profile is None:
@@ -96,6 +96,7 @@ def adapted_quartet_joining(
             break
 
         score: dict[tuple[Any, Any, Any], float] = {}
+        taxa_of: dict[tuple[Any, Any], frozenset[str]] = {}  # (center, u) → taxa set
 
         for center_node in center_nodes:
             if current_tree.degree(center_node) == 3:
@@ -109,6 +110,7 @@ def adapted_quartet_joining(
                     current_tree, u, center_node, return_node_taxa=True
                 )
                 C[u] = taxa_u
+                taxa_of[(center_node, u)] = taxa_u
 
             for (u1, u2) in itertools.combinations(neighbors_list, 2):
                 score[(u1, u2, center_node)] = 0.0
@@ -121,7 +123,13 @@ def adapted_quartet_joining(
         if not score:
             break
 
-        u1star, u2star, cstar = max(score, key=score.get)
+        u1star, u2star, cstar = max(
+            score,
+            key=lambda k: (
+                score[k],
+                sorted([sorted(taxa_of[(k[2], k[0])]), sorted(taxa_of[(k[2], k[1])])]),
+            ),
+        )
         tree_graph = current_tree._graph.copy()
 
         if tree_graph.has_edge(cstar, u1star):
