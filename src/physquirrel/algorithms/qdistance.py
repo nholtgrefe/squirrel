@@ -60,7 +60,7 @@ def quartet_distance_with_partition(
     partition: 'Partition',
     rho: tuple[float, float, float, float] = (0.5, 1.0, 0.5, 1.0),
     weighted_distance: bool = True,
-    representative_mode: Literal['average', 'best'] = 'average',
+    representative_mode: Literal['average', 'best'] = 'best',
 ) -> DistanceMatrix:
     """
     Compute a distance matrix between partition sets based on quartet profiles.

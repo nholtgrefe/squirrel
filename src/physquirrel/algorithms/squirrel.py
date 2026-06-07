@@ -49,7 +49,7 @@ def squirrel(
     profileset: SqQuartetProfileSet,
     outgroup: str | None = None,
     parallel: ParallelConfig | None = None,
-    representative_mode: Literal['average', 'best'] = 'average',
+    representative_mode: Literal['average', 'best'] = 'best',
     **kwargs: Any,
 ) -> SemiDirectedPhyNetwork | DirectedPhyNetwork:
     """

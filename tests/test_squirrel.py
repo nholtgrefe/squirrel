@@ -353,7 +353,7 @@ class TestSquirrelIntegration:
 class TestRepresentativeMode:
     """Tests for the representative_mode parameter of squirrel()."""
 
-    def test_default_mode_is_average(self, five_taxon_profileset) -> None:
+    def test_default_mode_is_best(self, five_taxon_profileset) -> None:
         net = squirrel(five_taxon_profileset)
         assert isinstance(net, SemiDirectedPhyNetwork)
         net.validate()

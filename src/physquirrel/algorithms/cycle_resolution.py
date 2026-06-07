@@ -24,7 +24,7 @@ def _qprofiles_to_circular_ordering(
     rho: tuple[float, float, float, float] = (0.5, 1.0, 0.5, 1.0),
     tsp_method: Literal['optimal', 'simulated_annealing', 'greedy', 'christofides'] = 'optimal',
     weighted_distance: bool = True,
-    representative_mode: Literal['average', 'best'] = 'average',
+    representative_mode: Literal['average', 'best'] = 'best',
 ) -> CircularSetOrdering:
     """
     Compute the optimal circular set ordering from quartet profiles via TSP.
@@ -76,7 +76,7 @@ def _qprofiles_to_hybrid_ranking(
     profileset: 'SqQuartetProfileSet',
     partition: Partition,
     weights: bool = True,
-    representative_mode: Literal['average', 'best'] = 'average',
+    representative_mode: Literal['average', 'best'] = 'best',
 ) -> list[frozenset[str]]:
     """
     Rank partition sets by likelihood of being the hybrid (reticulation) set.
@@ -337,7 +337,7 @@ def resolve_cycles(
     rho: tuple[float, float, float, float] = (0.5, 1.0, 0.5, 1.0),
     tsp_threshold: int | None = 13,
     weighted_distance: bool = True,
-    representative_mode: Literal['average', 'best'] = 'average',
+    representative_mode: Literal['average', 'best'] = 'best',
 ) -> SemiDirectedPhyNetwork:
     """
     Convert a tree to a level-1 network by replacing high-degree vertices with cycles.
