@@ -1,10 +1,11 @@
 # Supplementary data and scripts
 This folder contains the biological datasets, generated networks, simulated sequences, python scripts and results of the simulation experiments of the paper:
+
 > **Squirrel: Reconstructing semi-directed phylogenetic level-1 networks from four-leaved networks or sequence alignments**.
 > *Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, Samuel Martin, and Vincent Moulton.*
 > Molecular Biology and Evolution, 42(4):msaf067, 2025. doi: [10.1093/molbev/msaf067](https://doi.org/10.1093/molbev/msaf067)
 
-The results in the paper and in this repository were all obtained using version `1.0.6` of `physquirrel`.
+The results in the paper and in this repository were all obtained using version `1.0.6` of `physquirrel`. The package has since been substantially changed. To install this exact version, run `pip install physquirrel==1.0.6`.
 
 ## HIV
 The HIV-1 sequence alignment is in the `hiv.fasta` file, originally from [1]. The Python script to construct the network in the Squirrel paper is in `hiv.py`, with the resulting network (in `eNewick` format) in the file `hiv.txt`.

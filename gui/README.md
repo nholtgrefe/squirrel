@@ -2,6 +2,9 @@
 
 The **Squirrel-GUI** is a Graphical User-Interface for phylogenetic network analysis, employing the Squirrel algorithm to reconstruct semi-directed phylogenetic level-1 networks from quarnets or sequence alignments. To test out the GUI, we recommend using the small sequence alignment in the file [`hiv.fasta`](https://github.com/nholtgrefe/squirrel/blob/main/experiments/hiv/hiv.fasta).
 
+> **Note**: The Squirrel-GUI was built on the python package physquirrel, version 1.0.6. The package has since changed substantially.
+
+
 <img src="https://github.com/user-attachments/assets/676c980a-cc2e-4f7e-adc3-bf41b155ef8d" alt="Sample Image" width="570" >
 
 
