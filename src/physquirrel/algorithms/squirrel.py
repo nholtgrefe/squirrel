@@ -73,13 +73,13 @@ def squirrel(
         Controls how quartet profiles within each 4-subpartition are aggregated
         when computing the TSP distance matrix for cycle resolution.
 
-        - ``'average'`` (default): average rho-distance over all representative
+        - ``'best'`` (default): vote (weighted by profile weight) for the
+          plurality topology per 4-subpartition and use only that topology's
+          distance contributions. Mirrors the v1 behaviour of electing a single
+          representative quarnet per 4-tuple of partition sets.
+        - ``'average'``: average rho-distance over all representative
           leaf-partitions. Reflects the full empirical distribution of quartet
           signals across taxa within each partition set.
-        - ``'best'``: vote (weighted by profile weight) for the plurality
-          topology per 4-subpartition and use only that topology's distance
-          contributions. Mirrors the v1 behaviour of electing a single
-          representative quarnet per 4-tuple of partition sets.
     **kwargs
         Additional arguments passed to resolve_cycles (e.g. rho, tsp_threshold,
         weighted_distance).

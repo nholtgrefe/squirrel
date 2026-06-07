@@ -1,15 +1,16 @@
 [![PyPI](https://img.shields.io/pypi/v/physquirrel)](https://pypi.org/project/physquirrel/)
-[![License](https://img.shields.io/github/license/nholtgrefe/squirrel)](https://github.com/nholtgrefe/squirrel/blob/main/LICENSE)
-[![Docs](https://img.shields.io/badge/docs-dev-blue)](https://github.com/nholtgrefe/squirrel/blob/main/DOCS.md)
+[![License](https://img.shields.io/github/license/nholtgrefe/squirrel)](https://github.com/nholtgreve/squirrel/blob/main/LICENSE)
+[![Docs](https://img.shields.io/badge/docs-stable-blue)](https://nholtgrefe.github.io/squirrel/)
 [![MBE DOI](https://img.shields.io/badge/MBE-10.1093%2Fmolbev%2Fmsaf067-blue)](https://doi.org/10.1093/molbev/msaf067)
 
 # physquirrel
 
+<img src="docs/_static/squirrel_icon.svg" alt="physquirrel logo" width="200" align="right">
+
 physquirrel is the Python library for **Squirrel**—an algorithm for reconstructing semi-directed
-phylogenetic level-1 networks from quarnets and/or sequence alignments. It uses
-[networkx](https://networkx.org/) for network representations and [numpy](https://numpy.org/),
-[scipy](https://scipy.org/), and [matplotlib](https://matplotlib.org/) for computation and
-visualization.
+phylogenetic level-1 networks from quarnets and/or sequence alignments. It builds on
+[phylozoo](https://github.com/nholtgrefe/phylozoo) for network representations and
+[numba](https://numba.pydata.org/) for JIT-accelerated computation.
 
 <br>
 
@@ -17,8 +18,8 @@ visualization.
 
 - **δ-heuristic**: construct quarnets (4-leaf subnetworks) from multiple sequence alignments in `.fasta` or `.nexus` format
 - **Squirrel algorithm**: reconstruct semi-directed phylogenetic level-1 networks from quarnets
-- **Visualization**: basic plotting of phylogenetic networks
 - **eNewick export**: serialize phylogenetic trees and networks in `eNewick` format
+- **Visualization**: plot phylogenetic networks via the optional `viz` dependency
 
 ## Installation
 
@@ -26,11 +27,15 @@ visualization.
 pip install physquirrel
 ```
 
-Runtime dependencies (`numpy`, `networkx`, `matplotlib`, `scipy`) are installed automatically.
+Runtime dependencies (`phylozoo`, `numpy`, `networkx`, `numba`) are installed automatically. For visualization extras:
+
+```bash
+pip install physquirrel[viz]
+```
 
 ## Documentation
 
-For more detailed usage instructions visit the **[physquirrel docs](https://github.com/nholtgrefe/squirrel/blob/main/DOCS.md)** and/or check the docstrings in the source code.
+For the full manual, API reference, and installation guide, visit the **[physquirrel docs](https://nholtgrefe.github.io/squirrel/)**.
 
 ## Citation
 

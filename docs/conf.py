@@ -20,6 +20,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
+    "sphinx_copybutton",
 ]
 
 autosummary_generate = True

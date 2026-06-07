@@ -31,6 +31,7 @@ symbols, organized by module.
    installation
    manual
    api/index
+   changelog
 
 Indices and tables
 ------------------
