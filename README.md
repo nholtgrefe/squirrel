@@ -1,5 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/physquirrel)](https://pypi.org/project/physquirrel/)
-[![License](https://img.shields.io/github/license/nholtgrefe/squirrel)](https://github.com/nholtgreve/squirrel/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/nholtgreve/squirrel/blob/main/LICENSE)
 [![Docs](https://img.shields.io/badge/docs-stable-blue)](https://nholtgrefe.github.io/squirrel/)
 [![MBE DOI](https://img.shields.io/badge/MBE-10.1093%2Fmolbev%2Fmsaf067-blue)](https://doi.org/10.1093/molbev/msaf067)
 
