@@ -303,8 +303,9 @@ class TestWeightedDistance:
           rho_dist(A,C) = 0.5 from {A,C,D,E} and rho_dist(B,C) = 1.0 from {B,C,D,E}.
           delta_1 = 1.0 (w=1.0), delta_2 = 2.0 (w=0.5).
 
-          Unweighted avg = (1.0 + 2.0) / 2 = 1.5  → d = 4 + 1.5 = 5.5
-          Weighted avg   = (1.0×1.0 + 2.0×0.5) / (1.0+0.5) = 2.0/1.5 ≈ 1.333 → d = 4 + 1.333 ≈ 5.333
+          Unweighted: avg=1.5, confidence=0.5, shrink=0 → scaled=1.5 → d=5.5
+          Weighted:   avg=2/1.5=4/3, confidence=1.0/1.5=2/3,
+                      scaled = 4/3 - (4/3-3/2)*(1-2/3) = 4/3+1/18 = 25/18 → d=4+25/18≈5.389
         """
         taxa = frozenset({'A', 'B', 'C', 'D', 'E'})
         profiles = [
@@ -323,8 +324,8 @@ class TestWeightedDistance:
         set_ab = frozenset({'A', 'B'})
         set_c = frozenset({'C'})
 
-        dm_uw = quartet_distance_with_partition(ps, partition, weighted_distance=False)
-        dm_w = quartet_distance_with_partition(ps, partition, weighted_distance=True)
+        dm_uw = quartet_distance_with_partition(ps, partition, weighted_distance=False, representative_mode='average')
+        dm_w = quartet_distance_with_partition(ps, partition, weighted_distance=True, representative_mode='average')
 
         assert dm_uw.get_distance(set_ab, set_c) == pytest.approx(5.5)
         assert dm_w.get_distance(set_ab, set_c) == pytest.approx(4 + 2.0 / 1.5)
