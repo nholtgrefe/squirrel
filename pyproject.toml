@@ -4,7 +4,7 @@ build-backend = 'setuptools.build_meta'
 
 [project]
 name = "physquirrel"
-version = "2.0.0"
+version = "2.0.1"
 description = "a package for reconstructing level-1 phylogenetic networks from sequence alignments or 4-leaf subnetworks"
 authors = [
     {name = "Niels Holtgrefe", email = "n.a.l.holtgrefe@tudelft.nl"},

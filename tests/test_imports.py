@@ -9,7 +9,7 @@ class TestTopLevelImports:
 
     def test_version(self) -> None:
         from physquirrel import __version__
-        assert __version__ == "2.0.0"
+        assert __version__ == "2.0.1"
 
     def test_squirrel(self) -> None:
         from physquirrel import squirrel

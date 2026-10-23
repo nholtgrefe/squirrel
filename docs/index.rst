@@ -1,6 +1,6 @@
 
 
-.. image:: _static/squirrel_icon.svg
+.. image:: _static/physquirrel_icon.png
    :alt: physquirrel logo
    :align: right
    :width: 150px

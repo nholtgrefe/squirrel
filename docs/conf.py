@@ -7,7 +7,7 @@ import importlib.metadata
 try:
     release = importlib.metadata.version("physquirrel")
 except importlib.metadata.PackageNotFoundError:
-    release = "2.0.0"
+    release = "2.0.1"
 
 project = "physquirrel"
 author = "Niels Holtgrefe"
@@ -37,9 +37,8 @@ html_theme = "pydata_sphinx_theme"
 html_title = "physquirrel"
 html_theme_options = {
     "logo": {
-        "image_light": "_static/squirrel_icon.svg",
-        "image_dark": "_static/squirrel_icon.svg",
-        "text": "physquirrel",
+        "image_light": "_static/physquirrel_logo.png",
+        "image_dark": "_static/physquirrel_logo.png",
         "alt_text": "physquirrel",
     },
     "icon_links": [

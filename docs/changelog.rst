@@ -1,6 +1,22 @@
 Changelog
 =========
 
+Version 2.0.1
+-------------
+
+**Bug fixes**
+
+- Reconstructed networks no longer carry placeholder inheritance probabilities.
+  Reticulation edges were previously assigned a hardcoded ``gamma=0.5``, which
+  was written to eNewick output even though Squirrel does not estimate gammas.
+
+**Other**
+
+- New physquirrel logo in the documentation and README.
+- Fixed the license badge in the README.
+
+----
+
 Version 2.0.0
 -------------
 

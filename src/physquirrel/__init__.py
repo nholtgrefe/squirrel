@@ -4,7 +4,7 @@ physquirrel 2.0 — SQUIRREL inference package for phylogenetic networks.
 Core datatypes are provided by phylozoo; this package owns the inference pipeline.
 """
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 # Datatypes
 from .datatypes import SqQuartetProfile, SqQuartetProfileSet, to_psq, from_psq, to_profile_list, from_profile_list

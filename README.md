@@ -3,9 +3,9 @@
 [![Docs](https://img.shields.io/badge/docs-stable-blue)](https://nholtgrefe.github.io/squirrel/)
 [![MBE DOI](https://img.shields.io/badge/MBE-10.1093%2Fmolbev%2Fmsaf067-blue)](https://doi.org/10.1093/molbev/msaf067)
 
-# physquirrel
-
-<img src="docs/_static/squirrel_icon.svg" alt="physquirrel logo" width="200" align="right">
+<p align="center">
+  <img src="docs/_static/physquirrel_logo_top.png" alt="physquirrel logo" width="450">
+</p>
 
 physquirrel is the Python library for **Squirrel**—an algorithm for reconstructing semi-directed
 phylogenetic level-1 networks from quarnets and/or sequence alignments. It builds on
