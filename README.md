@@ -1,11 +1,9 @@
 [![PyPI](https://img.shields.io/pypi/v/physquirrel)](https://pypi.org/project/physquirrel/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/nholtgreve/squirrel/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](https://github.com/nholtgrefe/squirrel/blob/main/LICENSE)
 [![Docs](https://img.shields.io/badge/docs-stable-blue)](https://nholtgrefe.github.io/squirrel/)
 [![MBE DOI](https://img.shields.io/badge/MBE-10.1093%2Fmolbev%2Fmsaf067-blue)](https://doi.org/10.1093/molbev/msaf067)
 
-<p align="center">
-  <img src="docs/_static/physquirrel_logo_top.png" alt="physquirrel logo" width="450">
-</p>
+<img src="https://raw.githubusercontent.com/nholtgrefe/squirrel/main/docs/_static/physquirrel_logo_top.png" alt="physquirrel logo" width="300" align="right">
 
 physquirrel is the Python library for **Squirrel**—an algorithm for reconstructing semi-directed
 phylogenetic level-1 networks from quarnets and/or sequence alignments. It builds on
@@ -49,4 +47,4 @@ If you use physquirrel, please cite:
 
 For the graphical user interface developed for the paper, please go to [`gui/`](https://github.com/nholtgrefe/squirrel/tree/main/gui).
 
-For the experimental materials corresponding to the paper, please go to [`experiments/`](https://github.com/nholtgreve/squirrel/tree/main/experiments).
+For the experimental materials corresponding to the paper, please go to [`experiments/`](https://github.com/nholtgrefe/squirrel/tree/main/experiments).
