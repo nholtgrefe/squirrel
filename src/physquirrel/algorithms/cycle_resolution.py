@@ -294,8 +294,8 @@ def _insert_cycle(
 
         test_graph.remove_edge(parent1, hybrid_node)
         test_graph.remove_edge(parent2, hybrid_node)
-        test_graph.add_directed_edge(parent1, hybrid_node, gamma=0.5)
-        test_graph.add_directed_edge(parent2, hybrid_node, gamma=0.5)
+        test_graph.add_directed_edge(parent1, hybrid_node)
+        test_graph.add_directed_edge(parent2, hybrid_node)
 
         components = source_components(test_graph)
         if len(components) != 1:
